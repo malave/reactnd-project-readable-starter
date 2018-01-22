@@ -3,14 +3,19 @@ import {
     Route,
     Switch
 } from 'react-router-dom';
-import Home from './containers/Home';
-import NotFound from './containers/NotFound';
+
+import {
+    HomePage,
+    NotFound,
+    PostPage
+} from './containers';
 
 // build the router
 const router = (
-
     <Switch>
-        <Route exact path='/' component={Home} />
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/:category' component={HomePage} />
+        <Route exact path='/:category/:id' component={PostPage} />
         <Route exact path='*' component={NotFound} />
     </Switch>
 );
