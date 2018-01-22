@@ -5,16 +5,26 @@ import {
     compose,
     createStore
 } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
+import sagas from './sagas/';
+const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState = {}, history) {
+    // create the saga middleware
+    // List of middlewares
     const middlewares = [
+        sagaMiddleware,
         routerMiddleware(history),
     ];
 
+    //Creates function to be executed by composer
     const enhancers = [
         applyMiddleware(...middlewares),
     ];
+
+    // Enable devtools if available
+    // https://github.com/zalmoxisus/redux-devtools-extension#12-advanced-store-setup
     const composeEnhancers =
         process.env.NODE_ENV !== 'production' &&
         typeof window === 'object' &&
@@ -24,9 +34,13 @@ export default function configureStore(initialState = {}, history) {
             })
             : compose;
 
-    return createStore(
+    const store = createStore(
         reducers(),
         fromJS(initialState),
         composeEnhancers(...enhancers)
     );
+
+    sagas(sagaMiddleware.run);
+
+    return store;
 }

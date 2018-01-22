@@ -5,6 +5,14 @@
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { combineReducers } from 'redux-immutable';
+import categoryReducer from './category';
+import postReducer from './post';
+
+// Initial global state
+const globalInitialState = fromJS({
+    loading: false,
+    error: '',
+});
 
 // Initial routing state
 const routeInitialState = fromJS({
@@ -28,9 +36,11 @@ function routeReducer(state = routeInitialState, action) {
 /**
  * Creates the main reducer with the dynamically injected ones
  */
-export default function createReducer(injectedReducers) {
+export default function createReducer() {
     return combineReducers({
+        global: () => globalInitialState,
         route: routeReducer,
-        ...injectedReducers,
+        category: categoryReducer,
+        post: postReducer,
     });
 }
