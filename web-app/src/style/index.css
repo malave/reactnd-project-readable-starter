@@ -1,0 +1,12 @@
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.flex .post {
+    margin:10px 0 0 2%;
+    flex-grow: 1;
+    width: calc(100% * (1/3));
+
+}

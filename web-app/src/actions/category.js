@@ -1,8 +1,8 @@
 import {
     LOAD_CATEGORIES,
     LOAD_CATEGORIES_ERROR,
-    LOAD_CATEGORIES_SUCCESS
-} from '../constants';
+    LOAD_CATEGORIES_SUCCESS,
+} from '../constants/actions';
 
 export function loadCategories() {
     return {

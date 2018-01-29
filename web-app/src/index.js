@@ -1,6 +1,7 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import 'jquery/dist/cdn/jquery-2.1.1.js';
 import 'materialize-css/dist/js/materialize.min';
+import './style/index.css';
 import createHistory from 'history/createBrowserHistory';
 import React from 'react';
 import ReactDOM from 'react-dom';

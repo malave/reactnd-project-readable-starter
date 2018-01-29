@@ -3,7 +3,7 @@ import {
     LOAD_CATEGORIES,
     LOAD_CATEGORIES_ERROR,
     LOAD_CATEGORIES_SUCCESS
-} from '../constants';
+} from '../constants/actions';
 
 // The initial state of the App
 const initialState = fromJS({

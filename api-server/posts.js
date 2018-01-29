@@ -3,28 +3,61 @@ const clone = require('clone')
 let db = {}
 
 const defaultData = {
-  "8xf0y6ziyjabvozdd253nd": {
-    id: '8xf0y6ziyjabvozdd253nd',
-    timestamp: 1467166872634,
-    title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
-    author: 'thingtwo',
-    category: 'react',
-    voteScore: 6,
-    deleted: false,
-    commentCount: 2
-  },
-  "6ni6ok3ym7mf1p33lnez": {
-    id: '6ni6ok3ym7mf1p33lnez',
-    timestamp: 1468479767190,
-    title: 'Learn Redux in 10 minutes!',
-    body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-    author: 'thingone',
-    category: 'redux',
-    voteScore: -5,
-    deleted: false,
-    commentCount: 0
-  }
+    '8xf0y6ziyjabvozdd253nd': {
+        id: '8xf0y6ziyjabvozdd253nd',
+        timestamp: 1467166872634,
+        title: 'Udacity is the best place to learn React',
+        body: 'Everyone says so after all.',
+        author: 'thingtwo',
+        category: 'react',
+        voteScore: 6,
+        deleted: false,
+        commentCount: 2
+    },
+    '6ni6ok3ym7mf1p33lnez': {
+        id: '6ni6ok3ym7mf1p33lnez',
+        timestamp: 1468479767190,
+        title: 'Learn Redux in 10 minutes!',
+        body: 'Just kidding. It takes more than 10 minutes to learn technology.',
+        author: 'thingone',
+        category: 'redux',
+        voteScore: -5,
+        deleted: false,
+        commentCount: 0
+    },
+    '6ni6o735gdkdp33lnez': {
+        id: '6ni6o735gdkdp33lnez',
+        timestamp: 1468479767190,
+        title: 'Create amazing pages with React!',
+        body: 'Well at least yeah, what the title said.',
+        author: 'luis',
+        category: 'react',
+        voteScore: 20,
+        deleted: false,
+        commentCount: 0
+    },
+    '674jdgslm7mf1p33lnez': {
+        id: '674jdgslm7mf1p33lnez',
+        timestamp: 1468479767190,
+        title: 'Learn Redux in 10 minutes! (Part 2)',
+        body: 'Still going to take more than 10 minutes tho',
+        author: 'malave',
+        category: 'redux',
+        voteScore: -20,
+        deleted: false,
+        commentCount: 0
+    },
+    '674jdgslm7mf1p33lnes': {
+        id: '674jdgslm7mf1p33lnes',
+        timestamp: 1468479767190,
+        title: 'Learn Redux in 10 minutes! (Part 600)',
+        body: 'Still going to take more than 10 minutes tho. Still going to take more than 10 minutes tho. Still going to take more than 10 minutes tho. Still going to take more than 10 minutes tho. Still going to take more than 10 minutes tho. Still going to take more than 10 minutes tho. Still going to take more than 10 minutes tho. Still going to take more than 10 minutes tho.',
+        author: 'malave',
+        category: 'redux',
+        voteScore: -20,
+        deleted: false,
+        commentCount: 0
+    }
 }
 
 function getData (token) {

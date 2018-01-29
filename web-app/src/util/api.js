@@ -3,6 +3,7 @@ import request from './request';
 const HEADERS = {
     'Authorization': 'whatever-you-want',
     'Accept': 'application/json',
+    'Content-Type': 'application/json'
 };
 
 const POST_HEADERS = {
@@ -27,8 +28,8 @@ export default {
     getPostById: (id) => {
         return request(`${BASE_URL}/posts/${id}`, GET_HEADERS);
     },
-    postPost: () => {
-        throw new Error('Not implemented');
+    postPost: (post) => {
+        return request(`${BASE_URL}/posts`, { ...POST_HEADERS, body: JSON.stringify(post) });
     },
     getPostsByCategory: (category) => {
         return request(`${BASE_URL}/${category}/posts`, GET_HEADERS);

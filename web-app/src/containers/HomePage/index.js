@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadCategories } from '../../actions/category';
 import { loadPosts } from '../../actions/post';
+import PostList from '../../components/PostList';
 
 class HomePage extends React.Component {
     componentDidMount() {
@@ -11,12 +12,9 @@ class HomePage extends React.Component {
     }
 
     render() {
+        const { posts } = this.props;
         return (
-            <div>
-                <code>{JSON.stringify(this.props.categories)}</code>
-                <br />
-                <code>{JSON.stringify(this.props.posts)}</code>
-            </div>
+            <PostList posts={posts} />
         );
     }
 }

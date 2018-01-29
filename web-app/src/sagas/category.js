@@ -7,7 +7,7 @@ import {
     loadCategoriesError,
     loadCategoriesSuccess
 } from '../actions/category';
-import { LOAD_CATEGORIES } from '../constants';
+import { LOAD_CATEGORIES } from '../constants/actions';
 import api from '../util/api';
 
 export function* getCategories() {
