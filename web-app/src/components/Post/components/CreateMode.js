@@ -14,23 +14,27 @@ class CreateMode extends React.Component {
     constructor() {
         super();
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleOnSave = this.handleOnSave.bind(this);
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+        this.state = {
+            id: _.uniqueId(`post-id-${_.random(0, 10000000)}`),
+            title: undefined,
+            body: undefined,
+            author: undefined,
+            category: undefined,
+        };
     }
 
-    state: {
-        title: undefined,
-        body: undefined,
-        author: undefined,
-        category: undefined,
-    };
-
     componentWillMount() {
-        const { categories } = this.props;
+        const { categories, post } = this.props;
         this.setState({
             category: categories[0].name
         });
+        if (post) {
+            this.setState({
+                ...post
+            });
+        }
     }
-
 
     renderCategorySelect(categories) {
         return categories.map(category => <option key={category.name} value={category.name}>{category.name}</option>);
@@ -46,13 +50,12 @@ class CreateMode extends React.Component {
         });
     }
 
-    handleOnSave() {
+    handleOnSubmit() {
         const data = {
             ...this.state,
-            id: _.uniqueId(`post-id-${_.random(0, 10000000)}`),
             timestamp: Date.now(),
         };
-        this.props.onCreate(data);
+        this.props.onSubmit(data);
     }
 
     render() {
@@ -60,13 +63,18 @@ class CreateMode extends React.Component {
         const textAreaId = _.uniqueId('post-create-text-area-');
         return (
             <div className={'container'}>
-                <Card title='New Post' actions={[<a key={_.uniqueId('post-create-')} onClick={this.handleOnSave}>Save</a>]}>
-                    <Input label="Title" name="title" onChange={this.handleInputChange} />
-                    <div className="input-field">
-                        <textarea id={textAreaId} name="body" className="materialize-textarea" onChange={this.handleInputChange} />
+                <Card
+                    title='New Post'
+                    actions={[
+                        <a className={'waves-effect waves-light btn'} key={_.uniqueId('post-create-')} onClick={this.handleOnSubmit}>Save</a>
+                    ]}
+                >
+                    <Input label="Title" name="title" defaultValue={this.state.title} onChange={this.handleInputChange} />
+                    <div className="col input-field">
+                        <textarea id={textAreaId} name="body" value={this.state.body} className="materialize-textarea" onChange={this.handleInputChange} />
                         <label htmlFor={textAreaId}>Content</label>
                     </div>
-                    <Input label="Author" name="author" onChange={this.handleInputChange} />
+                    <Input label="Author" name="author" defaultValue={this.state.author} onChange={this.handleInputChange} />
                     <Input type='select' name="category" defaultValue={this.state.category} label="Category" onChange={this.handleInputChange}>
                         {this.renderCategorySelect(categories)}
                     </Input>
@@ -77,7 +85,7 @@ class CreateMode extends React.Component {
 }
 
 CreateMode.propTypes = {
-    onCreate: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
     categories: PropTypes.arrayOf(PropTypes.shape(CATEGORY_PROPS)).isRequired,
     post: PropTypes.shape(POST_PROPS),
 };

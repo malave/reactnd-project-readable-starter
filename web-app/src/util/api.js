@@ -10,6 +10,10 @@ const POST_HEADERS = {
     method: 'POST',
     headers: HEADERS,
 };
+const PUT_HEADERS = {
+    method: 'PUT',
+    headers: HEADERS,
+};
 
 const GET_HEADERS = {
     method: 'GET',
@@ -37,8 +41,8 @@ export default {
     votePost: () => {
         throw new Error('Not implemented');
     },
-    updatePost: () => {
-        throw new Error('Not implemented');
+    putPost: (post) => {
+        return request(`${BASE_URL}/posts/${post.id}`, { ...PUT_HEADERS, body: JSON.stringify(post) });
     },
     deletePost: () => {
         throw new Error('Not implemented');

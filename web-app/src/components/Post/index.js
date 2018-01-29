@@ -10,16 +10,15 @@ import {
 } from '../../constants/propTypes';
 import Card from './components/CardMode';
 import Create from './components/CreateMode';
-import Edit from './components/EditMode';
 import View from './components/ViewMode';
 
 class Post extends React.Component {
     renderMode(mode, post, categories) {
         switch (mode) {
             case MODE_CREATE:
-                return <Create categories={categories} onCreate={this.props.onCreate} />;
+                return <Create categories={categories} onSubmit={this.props.onCreate} />;
             case MODE_EDIT:
-                return <Edit categories={categories} post={post} onUpdate={this.props.onUpdate} />;
+                return <Create categories={categories} post={post} onSubmit={this.props.onUpdate} />;
             case MODE_CARD:
                 return <Card post={post} />;
             default:

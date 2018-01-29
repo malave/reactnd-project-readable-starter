@@ -11,11 +11,14 @@ import {
     loadPostByIdSuccess,
     loadPostsError,
     loadPostsSuccess,
+    updatePostError,
+    updatePostSucess
 } from '../actions/post';
 import {
     CREATE_POST,
     LOAD_POST,
-    LOAD_POSTS
+    LOAD_POSTS,
+    UPDATE_POST,
 } from '../constants/actions';
 import api from '../util/api';
 
@@ -50,6 +53,17 @@ export function* postPost(payload) {
     }
 }
 
+export function* putPost(payload) {
+    const { post } = payload;
+    try {
+        const response = yield call(api.putPost, post);
+        yield put(updatePostSucess(response));
+        yield put(push(`/${post.category}/${post.id}`));
+    } catch (error) {
+        yield put(updatePostError(error));
+    }
+}
+
 export function* loadPosts() {
     yield takeLatest(LOAD_POSTS, getPosts);
 }
@@ -62,9 +76,14 @@ export function* createPost() {
     yield takeLatest(CREATE_POST, postPost);
 }
 
+export function* updatePost() {
+    yield takeLatest(UPDATE_POST, putPost);
+}
+
 // Bootstrap sagas
 export default [
     loadPosts,
     loadPostById,
     createPost,
+    updatePost,
 ];
