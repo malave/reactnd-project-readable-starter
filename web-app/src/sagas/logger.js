@@ -3,8 +3,8 @@ import {
     takeEvery,
 } from 'redux-saga/effects';
 
-export function* logger() {
-    yield takeEvery('*', function* logger(action) {
+export function* errorLogger() {
+    yield takeEvery('*', function* errorLogger(action) {
         if (action.error) {
             yield call(console.error, action);
         }
@@ -13,5 +13,5 @@ export function* logger() {
 
 // Bootstrap sagas
 export default [
-    logger,
+    errorLogger,
 ];
