@@ -15,6 +15,11 @@ const PUT_HEADERS = {
     headers: HEADERS,
 };
 
+const DELETE_HEADERS = {
+    method: 'PUT',
+    headers: HEADERS,
+};
+
 const GET_HEADERS = {
     method: 'GET',
     headers: HEADERS,
@@ -38,32 +43,32 @@ export default {
     getPostsByCategory: (category) => {
         return request(`${BASE_URL}/${category}/posts`, GET_HEADERS);
     },
-    votePost: () => {
-        throw new Error('Not implemented');
+    votePost: (id, option) => {
+        return request(`${BASE_URL}/posts/${id}`, { ...POST_HEADERS, option: option });
     },
     putPost: (post) => {
         return request(`${BASE_URL}/posts/${post.id}`, { ...PUT_HEADERS, body: JSON.stringify(post) });
     },
-    deletePost: () => {
-        throw new Error('Not implemented');
+    deletePost: (id) => {
+        return request(`${BASE_URL}/posts/${id}`, { ...DELETE_HEADERS });
     },
     getCommentsByPostId: (id) => {
         return request(`${BASE_URL}/posts/${id}/comments`, GET_HEADERS);
     },
-    postComment: () => {
-        throw new Error('Not implemented');
+    postComment: (comment) => {
+        return request(`${BASE_URL}/comments/`, { ...POST_HEADERS, body: JSON.stringify(comment) });
     },
-
     getCommentById: (id) => {
         return request(`${BASE_URL}/comments/${id}`, GET_HEADERS);
     },
-    voteComment: () => {
-        throw new Error('Not implemented');
+    voteComment: (id, option) => {
+        return request(`${BASE_URL}/comments/${id}`, { ...POST_HEADERS, option: option });
     },
-    updateComment: () => {
-        throw new Error('Not implemented');
+    updateComment: (comment) => {
+        return request(`${BASE_URL}/comments/${comment.id}`, { ...PUT_HEADERS, body: JSON.stringify(comment) });
     },
-    deleteComment: () => {
-        throw new Error('Not implemented');
+    deleteComment: (id) => {
+        return request(`${BASE_URL}/comments/${id}`, { ...DELETE_HEADERS });
+
     },
 };

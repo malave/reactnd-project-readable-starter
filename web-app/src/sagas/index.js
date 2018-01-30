@@ -1,11 +1,13 @@
-import CategorySagas from './category';
-import PostSaga from './post';
-import LoggerSaga from './logger';
+import CategoryWatcher from './watchers/category';
+import CommentWatcher from './watchers/comment';
+import LoggerWatcher from './watchers/logger';
+import PostWatcher from './watchers/post';
 
 const sagas = [
-    ...CategorySagas,
-    ...PostSaga,
-    ...LoggerSaga,
+    ...CategoryWatcher,
+    ...PostWatcher,
+    ...CommentWatcher,
+    ...LoggerWatcher,
 ];
 
 export default function initialize(runSaga) {
