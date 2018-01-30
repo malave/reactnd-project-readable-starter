@@ -16,6 +16,17 @@ export const CATEGORY_PROPS = {
     path: PropTypes.string.isRequired,
 };
 
+export const COMMENT_PROPS = {
+    id: PropTypes.string.isRequired,
+    parentId: PropTypes.string.isRequired,
+    timestamp: PropTypes.number.isRequired,
+    body: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    voteScore: PropTypes.number.isRequired,
+    deleted: PropTypes.bool.isRequired,
+    parentDeleted: PropTypes.bool.isRequired,
+};
+
 export const MODE_VIEW = 'mode/view';
 export const MODE_CARD = 'mode/card';
 export const MODE_EDIT = 'mode/edit';

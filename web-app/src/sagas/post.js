@@ -6,13 +6,13 @@ import {
 } from 'redux-saga/effects';
 import {
     createPostError,
-    createPostSucess,
+    createPostSuccess,
     loadPostByIdError,
     loadPostByIdSuccess,
     loadPostsError,
     loadPostsSuccess,
     updatePostError,
-    updatePostSucess
+    updatePostSuccess
 } from '../actions/post';
 import {
     CREATE_POST,
@@ -46,7 +46,7 @@ export function* postPost(payload) {
     const { post } = payload;
     try {
         const response = yield call(api.postPost, post);
-        yield put(createPostSucess(response));
+        yield put(createPostSuccess(response));
         yield put(push(`/${post.category}/${post.id}`));
     } catch (error) {
         yield put(createPostError(error));
@@ -57,7 +57,7 @@ export function* putPost(payload) {
     const { post } = payload;
     try {
         const response = yield call(api.putPost, post);
-        yield put(updatePostSucess(response));
+        yield put(updatePostSuccess(response));
         yield put(push(`/${post.category}/${post.id}`));
     } catch (error) {
         yield put(updatePostError(error));
@@ -77,6 +77,10 @@ export function* createPost() {
 }
 
 export function* updatePost() {
+    yield takeLatest(UPDATE_POST, putPost);
+}
+
+export function* votePost() {
     yield takeLatest(UPDATE_POST, putPost);
 }
 

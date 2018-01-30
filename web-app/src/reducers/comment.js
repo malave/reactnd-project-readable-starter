@@ -4,105 +4,91 @@ import * as actions from '../constants/actions';
 // The initial state of the App
 const initialState = fromJS({
     current: null,
-    posts: [],
+    comments: [],
 });
 
-function postReducer(state = initialState, action) {
+function commentReducer(state = initialState, action) {
     switch (action.type) {
-        case actions.LOAD_POSTS:
+        case actions.LOAD_COMMENT:
             return state
                 .set('lading', true)
                 .set('error', null);
-        case actions.LOAD_POSTS_SUCCESS:
+        case actions.LOAD_COMMENT_SUCCESS:
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('posts', fromJS(action.posts));
-        case actions.LOAD_POSTS_ERROR:
+                .set('comments', fromJS(action.comments));
+        case actions.LOAD_COMMENT_ERROR:
             return state
                 .set('lading', false)
                 .set('error', action.error)
-                .set('posts', initialState.get('posts'));
-        case actions.LOAD_POST:
+                .set('comments', initialState.get('comments'));
+        case actions.LOAD_POST_COMMENTS:
             return state
                 .set('lading', true)
                 .set('error', null);
-        case actions.LOAD_POST_SUCCESS:
+        case actions.LOAD_POST_COMMENTS_SUCCESS:
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', fromJS(action.post));
-        case actions.LOAD_POST_ERROR:
+                .set('comments', fromJS(action.comments));
+        case actions.LOAD_POST_COMMENTS_ERROR:
             return state
                 .set('lading', false)
                 .set('error', action.error)
-                .set('current', initialState.get('current'));
-        case actions.LOAD_POSTS_BY_CATEGORY:
+                .set('comments', initialState.get('comments'));
+        case actions.CREATE_POST_COMMENT:
             return state
                 .set('lading', true)
                 .set('error', null);
-        case actions.LOAD_POSTS_BY_CATEGORY_SUCCESS:
+        case actions.CREATE_POST_COMMENT_SUCCESS:
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('posts', fromJS(action.posts));
-        case actions.LOAD_POSTS_BY_CATEGORY_ERROR:
-            return state
-                .set('lading', false)
-                .set('error', action.error)
-                .set('posts', initialState.get('posts'));
-        case actions.CREATE_POST:
-            return state
-                .set('lading', true)
-                .set('error', null);
-        case actions.CREATE_POST_SUCCESS:
-            return state
-                .set('lading', false)
-                .set('error', null)
-                .set('current', fromJS(action.post));
-        case actions.CREATE_POST_ERROR:
+                .set('current', fromJS(action.comment));
+        case actions.CREATE_POST_COMMENT_ERROR:
             return state
                 .set('lading', false)
                 .set('error', action.error)
                 .set('current', initialState.get('current'));
-        case actions.UPDATE_POST:
+        case actions.UPDATE_COMMENT:
             return state
                 .set('lading', true)
                 .set('error', null);
-        case actions.UPDATE_POST_SUCCESS:
+        case actions.UPDATE_COMMENT_SUCCESS:
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', fromJS(action.post));
-        case actions.UPDATE_POST_ERROR:
+                .set('current', fromJS(action.comment));
+        case actions.UPDATE_COMMENT_ERROR:
             return state
                 .set('lading', false)
                 .set('error', action.error)
                 .set('current', initialState.get('current'));
-        case actions.VOTE_POST:
+        case actions.VOTE_COMMENT:
             return state
                 .set('lading', true)
                 .set('error', null);
-        case actions.VOTE_POST_SUCCESS:
+        case actions.VOTE_COMMENT_SUCCESS:
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', fromJS(action.post));
-        case actions.VOTE_POST_ERROR:
+                .set('current', fromJS(action.comment));
+        case actions.VOTE_COMMENT_ERROR:
             return state
                 .set('lading', false)
                 .set('error', action.error)
                 .set('current', initialState.get('current'));
-        case actions.DELETE_POST:
+        case actions.DELETE_COMMENT:
             return state
                 .set('lading', true)
                 .set('error', null);
-        case actions.DELETE_POST_SUCCESS:
+        case actions.DELETE_COMMENT_SUCCESS:
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', null);
-        case actions.DELETE_POST_ERROR:
+                .set('current', fromJS(action.comment));
+        case actions.DELETE_COMMENT_ERROR:
             return state
                 .set('lading', false)
                 .set('error', action.error)
@@ -112,4 +98,4 @@ function postReducer(state = initialState, action) {
     }
 }
 
-export default postReducer;
+export default commentReducer;

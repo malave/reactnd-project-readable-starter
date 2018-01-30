@@ -1,24 +1,20 @@
-import {
-    LOAD_CATEGORIES,
-    LOAD_CATEGORIES_ERROR,
-    LOAD_CATEGORIES_SUCCESS,
-} from '../constants/actions';
+import * as actions from '../constants/actions';
 
 export function loadCategories() {
     return {
-        type: LOAD_CATEGORIES
+        type: actions.LOAD_CATEGORIES
     };
 }
 
 export function loadCategoriesSuccess(categories) {
     return {
-        type: LOAD_CATEGORIES_SUCCESS,
+        type: actions.LOAD_CATEGORIES_SUCCESS,
         categories
     };
 }
 
 export function loadCategoriesError() {
     return {
-        type: LOAD_CATEGORIES_ERROR
+        type: actions.LOAD_CATEGORIES_ERROR
     };
 }

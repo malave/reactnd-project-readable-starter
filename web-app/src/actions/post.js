@@ -1,98 +1,149 @@
-import {
-    CREATE_POST,
-    CREATE_POST_ERROR,
-    CREATE_POST_SUCCESS,
-    LOAD_POST,
-    LOAD_POST_ERROR,
-    LOAD_POST_SUCCESS,
-    LOAD_POSTS,
-    LOAD_POSTS_ERROR,
-    LOAD_POSTS_SUCCESS,
-    UPDATE_POST,
-    UPDATE_POST_ERROR,
-    UPDATE_POST_SUCCESS
-} from '../constants/actions';
+import * as actions from '../constants/actions';
 
 export function loadPosts(category = null) {
     return {
-        type: LOAD_POSTS,
-        category
+        type: actions.LOAD_POSTS,
+        category,
     };
 }
 
 export function loadPostsSuccess(posts) {
     return {
-        type: LOAD_POSTS_SUCCESS,
-        posts
+        type: actions.LOAD_POSTS_SUCCESS,
+        posts,
     };
 }
 
 export function loadPostsError(error) {
     return {
-        type: LOAD_POSTS_ERROR,
-        error
+        type: actions.LOAD_POSTS_ERROR,
+        error,
     };
 }
 
 export function loadPostById(id) {
     return {
-        type: LOAD_POST,
-        id
+        type: actions.LOAD_POST,
+        id,
     };
 }
 
 export function loadPostByIdSuccess(post) {
     return {
-        type: LOAD_POST_SUCCESS,
-        post
+        type: actions.LOAD_POST_SUCCESS,
+        post,
     };
 }
 
 export function loadPostByIdError(error) {
     return {
-        type: LOAD_POST_ERROR,
-        error
+        type: actions.LOAD_POST_ERROR,
+        error,
     };
 }
 
 export function createPost(post) {
     return {
-        type: CREATE_POST,
-        post
+        type: actions.CREATE_POST,
+        post,
     };
 }
 
-export function createPostSucess(post) {
+export function createPostSuccess(post) {
     return {
-        type: CREATE_POST_SUCCESS,
-        post
+        type: actions.CREATE_POST_SUCCESS,
+        post,
     };
 }
 
 export function createPostError(error) {
     return {
-        type: CREATE_POST_ERROR,
-        error
+        type: actions.CREATE_POST_ERROR,
+        error,
     };
 }
 
 export function updatePost(post) {
     return {
-        type: UPDATE_POST,
-        post
+        type: actions.UPDATE_POST,
+        post,
     };
 }
 
-export function updatePostSucess(post) {
+export function updatePostSuccess(post) {
     return {
-        type: UPDATE_POST_SUCCESS,
-        post
+        type: actions.UPDATE_POST_SUCCESS,
+        post,
     };
 }
 
 export function updatePostError(error) {
     return {
-        type: UPDATE_POST_ERROR,
-        error
+        type: actions.UPDATE_POST_ERROR,
+        error,
+    };
+}
+
+export function loadPostsByCategory(category) {
+    return {
+        type: actions.LOAD_POSTS_BY_CATEGORY,
+        category,
+    };
+}
+
+export function loadPostsByCategorySuccess(post) {
+    return {
+        type: actions.LOAD_POSTS_BY_CATEGORY_SUCCESS,
+        post,
+    };
+}
+
+export function loadPostsByCategoryError(error) {
+    return {
+        type: actions.LOAD_POSTS_BY_CATEGORY_ERROR,
+        error,
+    };
+}
+
+export function votePost(id, option) {
+    return {
+        type: actions.VOTE_POST,
+        id,
+        option,
+    };
+}
+
+export function votePostSuccess(post) {
+    return {
+        type: actions.VOTE_POST_SUCCESS,
+        post,
+    };
+}
+
+export function votePostError(error) {
+    return {
+        type: actions.VOTE_POST_ERROR,
+        error,
+    };
+}
+
+export function deletePost(id) {
+    return {
+        type: actions.DELETE_POST,
+        id,
+    };
+}
+
+export function deletePostSuccess(post) {
+    return {
+        type: actions.DELETE_POST_SUCCESS,
+        post,
+    };
+}
+
+export function deletePostError(error) {
+    return {
+        type: actions.DELETE_POST_ERROR,
+        error,
     };
 }
