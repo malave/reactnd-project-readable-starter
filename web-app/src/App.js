@@ -7,8 +7,8 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <Breadcrumb>
+                <div className="blue darken-1">
+                    <Breadcrumb >
                         <NavLink to="/">Readable</NavLink>
                         <NavLink to="/category">Category</NavLink>
                         <NavLink to="/category/123">Post</NavLink>

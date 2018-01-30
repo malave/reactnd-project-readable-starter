@@ -1,8 +1,9 @@
 import * as actions from '../constants/actions';
 
-export function loadPostComments() {
+export function loadPostComments(id) {
     return {
-        type: actions.LOAD_POST_COMMENTS
+        type: actions.LOAD_POST_COMMENTS,
+        id
     };
 }
 

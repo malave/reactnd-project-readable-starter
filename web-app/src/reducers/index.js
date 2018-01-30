@@ -6,6 +6,7 @@ import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { combineReducers } from 'redux-immutable';
 import categoryReducer from './category';
+import commentReducer from './comment';
 import postReducer from './post';
 
 // Initial global state
@@ -42,5 +43,6 @@ export default function createReducer() {
         route: routeReducer,
         category: categoryReducer,
         post: postReducer,
+        comment: commentReducer,
     });
 }
