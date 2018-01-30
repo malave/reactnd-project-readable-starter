@@ -2,9 +2,11 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
+    CardPanel,
     Col,
-    Row
+    Row,
 } from 'react-materialize';
+import { NavLink, } from 'react-router-dom';
 import { MODE_CARD } from '../../constants/propTypes';
 import Post from '../Post';
 
@@ -16,13 +18,27 @@ class PostList extends React.Component {
 
     renderRow(groups) {
         return (
-            groups.map(posts => <Row key={_.uniqueId('PostList-row-')}>{this.renderCol(posts)}</Row>)
+            groups.map(posts => <Row key={_.uniqueId('PostList-row-')}>{posts}</Row>)
+        );
+    }
+
+    renderAddCard() {
+        return (
+            <Col s={4}>
+                <div key={'omg-this-button-is-so-unique'} className=" card-add">
+                    <CardPanel className="hoverable center-align">
+                        <NavLink className={'btn-floating btn-large waves-effect waves-light red '} to={'/create'}><i className="material-icons">add</i></NavLink>
+                    </CardPanel>
+                </div>
+            </Col>
         );
     }
 
     render() {
         const { posts } = this.props;
-        const groups = _.chunk(posts, 3);
+        const cols = this.renderCol(posts);
+        cols.push(this.renderAddCard());
+        const groups = _.chunk(cols, 3);
         const rows = this.renderRow(groups);
         return (
             <div>{rows}</div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, } from 'react-materialize';
+import { Breadcrumb } from 'react-materialize';
 import { NavLink, } from 'react-router-dom';
 import { router } from './router';
 
