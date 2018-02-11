@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
-import { Breadcrumb } from 'react-materialize';
-import { NavLink, } from 'react-router-dom';
-import { router } from './router';
+import { Route } from 'react-router-dom';
+import MainPage from './containers/Header/Main';
+import { router, } from './router';
 
 class App extends Component {
     render() {
         return (
             <div>
-                <div className="blue darken-1">
-                    <Breadcrumb >
-                        <NavLink to="/">Readable</NavLink>
-                        <NavLink to="/category">Category</NavLink>
-                        <NavLink to="/category/123">Post</NavLink>
-                    </Breadcrumb>
-                </div>
-                <div className={'container'}>
-                    {router}
-                </div>
-
+                <Route exact path='*' component={MainPage} />
+                <div className={'container'}>{router}</div>
             </div>
         );
     }

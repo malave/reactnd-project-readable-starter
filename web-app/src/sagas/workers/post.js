@@ -3,6 +3,7 @@ import {
     call,
     put
 } from 'redux-saga/effects';
+import * as categoryActions from '../../actions/category';
 import * as postActions from '../../actions/post';
 import api from '../../util/api';
 
@@ -52,6 +53,7 @@ export function* getPostsByCategory(payload) {
     try {
         const response = yield call(api.getPostsByCategory, category);
         yield put(postActions.loadPostsByCategorySuccess(response));
+        yield put(categoryActions.changeCategory(category));
     } catch (error) {
         yield put(postActions.loadPostsByCategoryError(error));
     }
@@ -72,6 +74,7 @@ export function* deletePost(payload) {
     try {
         const response = yield call(api.deletePost, id);
         yield put(postActions.deletePostSuccess(response));
+        yield put(push(`/`));
     } catch (error) {
         yield put(postActions.deletePostError(error));
     }

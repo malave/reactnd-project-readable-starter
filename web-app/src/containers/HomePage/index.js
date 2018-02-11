@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadCategories } from '../../actions/category';
+import { withRouter } from 'react-router-dom';
 import {
     loadPosts,
     loadPostsByCategory
@@ -9,15 +9,23 @@ import {
 import PostList from '../../components/PostList';
 
 class HomePage extends React.Component {
+
     componentDidMount() {
-        this.props.loadCategories();
-        this.props.loadPosts(this.props.match.params.category);
+        const { category } = this.props;
+        this.props.loadPosts(category);
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        const { category } = nextProps;
+        if (category !== this.props.category) {
+            this.props.loadPosts(category);
+        }
     }
 
     render() {
-        const { posts } = this.props;
+        const { posts, location } = this.props;
         return (
-            <PostList posts={posts} />
+            <PostList posts={posts} location={location} />
         );
     }
 }
@@ -31,27 +39,24 @@ HomePage.propTypes = {
     loadPosts: PropTypes.func,
 
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
     loading: state.get('global').get('loading'),
     error: state.get('global').get('error'),
     categories: state.get('category').get('categories').toJS(),
+    category: ownProps.match.params.category,
     posts: state.get('post').get('posts').toJS(),
 });
 
 export function mapDispatchToProps(dispatch) {
     return {
-        loadCategories: () => {
-            dispatch(loadCategories());
-        },
         loadPosts: (category) => {
             if (category) {
                 dispatch(loadPostsByCategory(category));
             } else {
                 dispatch(loadPosts());
             }
-
         },
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomePage));

@@ -1,5 +1,6 @@
 import { fromJS } from 'immutable';
 import {
+    CHANGE_CATEGORY,
     LOAD_CATEGORIES,
     LOAD_CATEGORIES_ERROR,
     LOAD_CATEGORIES_SUCCESS
@@ -7,12 +8,15 @@ import {
 
 // The initial state of the App
 const initialState = fromJS({
-    current: null,
+    current: undefined,
     categories: [],
 });
 
 function categoryReducer(state = initialState, action) {
     switch (action.type) {
+        case CHANGE_CATEGORY:
+            return state
+                .set('current', action.category ? fromJS(action.category) : initialState.get('current'));
         case LOAD_CATEGORIES:
             return state
                 .set('lading', true)

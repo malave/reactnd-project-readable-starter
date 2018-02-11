@@ -1,4 +1,5 @@
 // Category
+export const CHANGE_CATEGORY = 'readable/Category/CHANGE_CATEGORY';
 export const LOAD_CATEGORIES = 'readable/Category/LOAD_CATEGORIES';
 export const LOAD_CATEGORIES_SUCCESS = 'readable/Category/LOAD_CATEGORIES_SUCCESS';
 export const LOAD_CATEGORIES_ERROR = 'readable/Category/LOAD_CATEGORIES_ERROR';

@@ -1,5 +1,12 @@
 import * as actions from '../constants/actions';
 
+export function changeCategory(category) {
+    return {
+        type: actions.CHANGE_CATEGORY,
+        category
+    };
+}
+
 export function loadCategories() {
     return {
         type: actions.LOAD_CATEGORIES
