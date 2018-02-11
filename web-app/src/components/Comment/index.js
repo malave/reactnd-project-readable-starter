@@ -32,7 +32,8 @@ class Comment extends React.Component {
             comment,
             onCreate,
             onUpdate,
-            onVoteComment
+            onVoteComment,
+            onDeleteComment,
         } = this.props;
         switch (this.state.mode) {
             case MODE_CREATE:
@@ -53,6 +54,7 @@ class Comment extends React.Component {
                     comment={comment}
                     setEditMode={this.setMode}
                     onVoteComment={onVoteComment}
+                    onDeleteComment={onDeleteComment}
                 />;
         }
     }
@@ -69,6 +71,7 @@ Comment.propTypes = {
     onCreate: PropTypes.func,
     onUpdate: PropTypes.func,
     onVoteComment: PropTypes.func,
+    onDeleteComment: PropTypes.func,
 };
 Comment.defaultProps = {
     mode: MODE_VIEW,

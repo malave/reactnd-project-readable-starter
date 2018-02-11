@@ -35,7 +35,8 @@ class ViewMode extends React.Component {
             comments,
             onCreateComment,
             onUpdateComment,
-            onVoteComment
+            onVoteComment,
+            onDeleteComment,
         } = this.props;
         return (
             <div>
@@ -57,6 +58,7 @@ class ViewMode extends React.Component {
                     onCreate={onCreateComment}
                     onUpdate={onUpdateComment}
                     onVoteComment={onVoteComment}
+                    onDeleteComment={onDeleteComment}
                 />
             </div>
         );
@@ -70,6 +72,7 @@ ViewMode.propTypes = {
     onUpdateComment: PropTypes.func.isRequired,
     onVotePost: PropTypes.func.isRequired,
     onVoteComment: PropTypes.func.isRequired,
+    onDeleteComment: PropTypes.func.isRequired,
 };
 
 ViewMode.defaultProps = {

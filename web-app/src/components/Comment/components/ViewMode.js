@@ -35,7 +35,10 @@ class ViewMode extends React.Component {
                                 className={'cursor-pointer'}
                                 onClick={() => this.props.setEditMode(MODE_EDIT)}
                             >&nbsp;<Icon>mode_edit</Icon></Badge>
-                            <Badge>&nbsp;<Icon tiny>delete</Icon></Badge>
+                            <Badge
+                                className={'cursor-pointer'}
+                                onClick={() => this.props.onDeleteComment(comment.id)}
+                            >&nbsp;<Icon tiny>delete</Icon></Badge>
                             <Badge>{comment.voteScore}&nbsp;&nbsp;<Icon tiny>thumbs_up_down</Icon></Badge>
                         </div>
                     ]}
@@ -50,6 +53,7 @@ ViewMode.propTypes = {
     comment: PropTypes.shape(COMMENT_PROPS).isRequired,
     setEditMode: PropTypes.func.isRequired,
     onVoteComment: PropTypes.func.isRequired,
+    onDeleteComment: PropTypes.func.isRequired,
 };
 
 export default ViewMode;

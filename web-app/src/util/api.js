@@ -16,7 +16,7 @@ const PUT_HEADERS = {
 };
 
 const DELETE_HEADERS = {
-    method: 'PUT',
+    method: 'DELETE',
     headers: HEADERS,
 };
 

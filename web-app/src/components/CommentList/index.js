@@ -19,6 +19,7 @@ class CommentList extends React.Component {
             onUpdate={onUpdate}
             onCreate={onCreate}
             onVoteComment={this.props.onVoteComment}
+            onDeleteComment={this.props.onDeleteComment}
         />;
     }
 
@@ -43,9 +44,10 @@ class CommentList extends React.Component {
 
 CommentList.propTypes = {
     comments: PropTypes.array,
-    onCreate: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired,
-    onVoteComment: PropTypes.func.isRequired,
+    onCreate: PropTypes.func,
+    onUpdate: PropTypes.func,
+    onVoteComment: PropTypes.func,
+    onDeleteComment: PropTypes.func,
 };
 
 CommentList.defaultProps = {

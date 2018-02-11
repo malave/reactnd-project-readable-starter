@@ -60,7 +60,6 @@ export function* deleteComment(payload) {
     try {
         const response = yield call(api.deleteComment, id);
         yield put(commentActions.deleteCommentSuccess(response));
-        yield call(getCommentsByPostId, { id: response.parentId });
     } catch (error) {
         yield put(commentActions.deleteCommentError(error));
     }

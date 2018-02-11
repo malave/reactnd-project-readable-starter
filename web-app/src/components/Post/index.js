@@ -28,6 +28,7 @@ class Post extends React.Component {
             onUpdateComment,
             onVotePost,
             onVoteComment,
+            onDeleteComment,
         } = this.props;
 
         switch (mode) {
@@ -52,6 +53,7 @@ class Post extends React.Component {
                     onUpdateComment={onUpdateComment}
                     onVotePost={onVotePost}
                     onVoteComment={onVoteComment}
+                    onDeleteComment={onDeleteComment}
                 />;
         }
     }
@@ -72,6 +74,7 @@ Post.propTypes = {
     onUpdateComment: PropTypes.func,
     onVotePost: PropTypes.func,
     onVoteComment: PropTypes.func,
+    onDeleteComment: PropTypes.func,
 };
 
 Post.defaultProps = {

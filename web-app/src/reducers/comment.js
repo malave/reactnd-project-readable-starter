@@ -93,7 +93,7 @@ function commentReducer(state = initialState, action) {
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', fromJS(action.comment));
+                .removeIn(['comments', findCommentIndex(state.get('comments'), action.comment.id)]);
         case actions.DELETE_COMMENT_ERROR:
             return state
                 .set('lading', false)
