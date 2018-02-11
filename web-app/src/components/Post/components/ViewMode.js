@@ -37,6 +37,7 @@ class ViewMode extends React.Component {
             onUpdateComment,
             onVoteComment,
             onDeleteComment,
+            onDeletePost,
         } = this.props;
         return (
             <div>
@@ -45,9 +46,19 @@ class ViewMode extends React.Component {
                     actions={[
                         <div key={_.random(0, 100)}>
                             <span><i>by <b>{post.author}</b> {moment(post.timestamp).fromNow()}</i></span>
-                            <Badge onClick={() => this.props.onVotePost(post.id, VOTE_DOWN)}><Icon>remove</Icon></Badge>
-                            <Badge onClick={() => this.props.onVotePost(post.id, VOTE_UP)}><Icon>add</Icon></Badge>
+                            <Badge
+                                className={'cursor-pointer'}
+                                onClick={() => this.props.onVotePost(post.id, VOTE_DOWN)}
+                            ><Icon>remove</Icon></Badge>
+                            <Badge
+                                className={'cursor-pointer'}
+                                onClick={() => this.props.onVotePost(post.id, VOTE_UP)}
+                            ><Icon>add</Icon></Badge>
                             <NavLink to={`/${post.category}/${post.id}/edit`}><Badge>&nbsp;<Icon>mode_edit</Icon></Badge></NavLink>
+                            <Badge
+                                className={'cursor-pointer'}
+                                onClick={() => onDeletePost(post.id)}
+                            ><Icon>delete</Icon></Badge>
                             <Badge>{post.commentCount} <Icon>chat</Icon></Badge>
                             <Badge>{post.voteScore} <Icon>thumbs_up_down</Icon></Badge>
                         </div>
@@ -73,6 +84,7 @@ ViewMode.propTypes = {
     onVotePost: PropTypes.func.isRequired,
     onVoteComment: PropTypes.func.isRequired,
     onDeleteComment: PropTypes.func.isRequired,
+    onDeletePost: PropTypes.func.isRequired,
 };
 
 ViewMode.defaultProps = {

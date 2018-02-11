@@ -26,6 +26,7 @@ class PostPage extends React.Component {
         this.onUpdateComment = this.onUpdateComment.bind(this);
         this.onVotePost = this.onVotePost.bind(this);
         this.onVoteComment = this.onVoteComment.bind(this);
+        this.onDeletePost = this.onDeletePost.bind(this);
         this.onDeleteComment = this.onDeleteComment.bind(this);
     }
 
@@ -65,8 +66,12 @@ class PostPage extends React.Component {
         this.props.voteComment(id, option);
     }
 
-    onDeleteComment(id){
-        this.props.deleteComment(id)
+    onDeletePost(id) {
+        this.props.deletePost(id);
+    }
+
+    onDeleteComment(id) {
+        this.props.deleteComment(id);
     }
 
     render() {
@@ -81,6 +86,7 @@ class PostPage extends React.Component {
                 onVotePost={this.onVotePost}
                 onVoteComment={this.onVoteComment}
                 onDeleteComment={this.onDeleteComment}
+                onDeletePost={this.onDeletePost}
             />;
         }
         if ((mode === MODE_EDIT) && !_.isEmpty(post) && !_.isEmpty(categories)) {
@@ -152,6 +158,9 @@ export function mapDispatchToProps(dispatch) {
         },
         voteComment: (id, option) => {
             dispatch(commentActions.voteComment(id, option));
+        },
+        deletePost: (id) => {
+            dispatch(postActions.deletePost(id));
         },
         deleteComment: (id) => {
             dispatch(commentActions.deleteComment(id));
