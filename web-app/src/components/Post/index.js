@@ -3,33 +3,61 @@ import React from 'react';
 import {
     CATEGORY_PROPS,
     COMMENT_PROPS,
+    POST_PROPS
+} from '../../constants/propTypes';
+import {
     MODE_CARD,
     MODE_CREATE,
     MODE_EDIT,
-    MODE_VIEW,
-    POST_PROPS
-} from '../../constants/propTypes';
+    MODE_VIEW
+} from '../../constants/strings';
 import Card from './components/CardMode';
 import Create from './components/CreateMode';
 import View from './components/ViewMode';
 
 class Post extends React.Component {
-    renderMode(mode, post, categories, comments) {
+    renderMode() {
+        const {
+            post,
+            mode,
+            categories,
+            comments,
+            onUpdatePost,
+            onCreatePost,
+            onCreateComment,
+            onUpdateComment,
+            onVotePost,
+            onVoteComment,
+        } = this.props;
+
         switch (mode) {
             case MODE_CREATE:
-                return <Create categories={categories} onSubmit={this.props.onCreatePost} />;
+                return <Create
+                    categories={categories}
+                    onSubmit={onCreatePost}
+                />;
             case MODE_EDIT:
-                return <Create categories={categories} post={post} onSubmit={this.props.onUpdatePost} />;
+                return <Create
+                    categories={categories}
+                    post={post}
+                    onSubmit={onUpdatePost}
+                />;
             case MODE_CARD:
                 return <Card post={post} />;
             default:
-                return <View comments={comments} post={post} onCreateComment={this.props.onCreateComment} onUpdateComment={this.props.onUpdateComment} />;
+                return <View
+                    comments={comments}
+                    post={post}
+                    onCreateComment={onCreateComment}
+                    onUpdateComment={onUpdateComment}
+                    onVotePost={onVotePost}
+                    onVoteComment={onVoteComment}
+                />;
         }
     }
 
     render() {
-        const { post, mode, categories, comments } = this.props;
-        return <div className={'post'}>{this.renderMode(mode, post, categories, comments)}</div>;
+        return <div className={'post'}>{this.renderMode()}</div>;
     }
 }
 
@@ -42,6 +70,8 @@ Post.propTypes = {
     onUpdatePost: PropTypes.func,
     onCreateComment: PropTypes.func,
     onUpdateComment: PropTypes.func,
+    onVotePost: PropTypes.func,
+    onVoteComment: PropTypes.func,
 };
 
 Post.defaultProps = {

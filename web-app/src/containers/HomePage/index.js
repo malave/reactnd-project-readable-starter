@@ -2,13 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadCategories } from '../../actions/category';
-import { loadPosts } from '../../actions/post';
+import {
+    loadPosts,
+    loadPostsByCategory
+} from '../../actions/post';
 import PostList from '../../components/PostList';
 
 class HomePage extends React.Component {
     componentDidMount() {
         this.props.loadCategories();
-        this.props.loadPosts();
+        this.props.loadPosts(this.props.match.params.category);
     }
 
     render() {
@@ -41,7 +44,12 @@ export function mapDispatchToProps(dispatch) {
             dispatch(loadCategories());
         },
         loadPosts: (category) => {
-            dispatch(loadPosts(category));
+            if (category) {
+                dispatch(loadPostsByCategory(category));
+            } else {
+                dispatch(loadPosts());
+            }
+
         },
     };
 }

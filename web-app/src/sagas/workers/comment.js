@@ -30,7 +30,6 @@ export function* postComment(payload) {
     try {
         const response = yield call(api.postComment, comment);
         yield put(commentActions.createPostCommentSuccess(response));
-        yield call(getCommentsByPostId, { id: response.parentId });
     } catch (error) {
         yield put(commentActions.createPostCommentError(error));
     }
@@ -41,7 +40,6 @@ export function* updateComment(payload) {
     try {
         const response = yield call(api.updateComment, comment);
         yield put(commentActions.updateCommentSuccess(response));
-        yield call(getCommentsByPostId, { id: response.parentId });
     } catch (error) {
         yield put(commentActions.updateCommentError(error));
     }
@@ -52,7 +50,6 @@ export function* voteComment(payload) {
     try {
         const response = yield call(api.voteComment, id, option);
         yield put(commentActions.voteCommentSuccess(response));
-        yield call(getCommentsByPostId, { id: response.parentId });
     } catch (error) {
         yield put(commentActions.voteCommentError(error));
     }

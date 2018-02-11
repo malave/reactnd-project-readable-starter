@@ -71,7 +71,7 @@ class CreateMode extends React.Component {
                 >
                     <Input label="Title" name="title" defaultValue={this.state.title} onChange={this.handleInputChange} />
                     <div className="col input-field">
-                        <textarea id={textAreaId} name="body" value={this.state.body} className="materialize-textarea" onChange={this.handleInputChange} />
+                        <textarea id={textAreaId} name="body" value={this.state.body} className="materialize-textarea active" onChange={this.handleInputChange} />
                         <label htmlFor={textAreaId}>Content</label>
                     </div>
                     <Input label="Author" name="author" defaultValue={this.state.author} onChange={this.handleInputChange} />

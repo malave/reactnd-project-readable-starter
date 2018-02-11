@@ -9,11 +9,13 @@ import Post from '../../components/Post';
 import {
     CATEGORY_PROPS,
     COMMENT_PROPS,
-    MODE_CREATE,
-    MODE_EDIT,
-    MODE_VIEW,
     POST_PROPS
 } from '../../constants/propTypes';
+import {
+    MODE_CREATE,
+    MODE_EDIT,
+    MODE_VIEW
+} from '../../constants/strings';
 
 class PostPage extends React.Component {
     constructor() {
@@ -22,6 +24,8 @@ class PostPage extends React.Component {
         this.onUpdatePost = this.onUpdatePost.bind(this);
         this.onCreateComment = this.onCreateComment.bind(this);
         this.onUpdateComment = this.onUpdateComment.bind(this);
+        this.onVotePost = this.onVotePost.bind(this);
+        this.onVoteComment = this.onVoteComment.bind(this);
     }
 
     componentWillMount() {
@@ -52,12 +56,43 @@ class PostPage extends React.Component {
         this.props.updateComment(comment);
     }
 
+    onVotePost(id, option) {
+        this.props.votePost(id, option);
+    }
+
+    onVoteComment(id, option) {
+        this.props.voteComment(id, option);
+    }
+
     render() {
         const { mode, post, categories, comments } = this.props;
-        if ((mode === MODE_VIEW) && !_.isEmpty(post)) return <Post comments={comments} post={post} mode={mode} onCreateComment={this.onCreateComment} onUpdateComment={this.onUpdateComment} />;
-        if ((mode === MODE_EDIT) && !_.isEmpty(post) && !_.isEmpty(categories)) return <Post onUpdatePost={this.onUpdatePost} categories={categories} post={post} mode={mode} />;
-        if ((mode === MODE_CREATE) && !_.isEmpty(categories)) return <Post onCreatePost={this.onCreatePost} categories={categories} mode={mode} />;
-        return '';
+        if ((mode === MODE_VIEW) && !_.isEmpty(post)) {
+            return <Post
+                comments={comments}
+                post={post}
+                mode={mode}
+                onCreateComment={this.onCreateComment}
+                onUpdateComment={this.onUpdateComment}
+                onVotePost={this.onVotePost}
+                onVoteComment={this.onVoteComment}
+            />;
+        }
+        if ((mode === MODE_EDIT) && !_.isEmpty(post) && !_.isEmpty(categories)) {
+            return <Post
+                onUpdatePost={this.onUpdatePost}
+                categories={categories}
+                post={post}
+                mode={mode}
+            />;
+        }
+        if ((mode === MODE_CREATE) && !_.isEmpty(categories)) {
+            return <Post
+                onCreatePost={this.onCreatePost}
+                categories={categories}
+                mode={mode}
+            />;
+        }
+        return <div />;
     }
 }
 
@@ -105,6 +140,12 @@ export function mapDispatchToProps(dispatch) {
         },
         updateComment: (comment) => {
             dispatch(commentActions.updateComment(comment));
+        },
+        votePost: (id, option) => {
+            dispatch(postActions.votePost(id, option));
+        },
+        voteComment: (id, option) => {
+            dispatch(commentActions.voteComment(id, option));
         },
     };
 }

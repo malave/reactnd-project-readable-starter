@@ -7,7 +7,7 @@ import {
     MODE_CREATE,
     MODE_EDIT,
     MODE_VIEW
-} from './constants/propTypes';
+} from './constants/strings';
 
 import {
     HomePage,

@@ -44,7 +44,7 @@ export default {
         return request(`${BASE_URL}/${category}/posts`, GET_HEADERS);
     },
     votePost: (id, option) => {
-        return request(`${BASE_URL}/posts/${id}`, { ...POST_HEADERS, option: option });
+        return request(`${BASE_URL}/posts/${id}`, { ...POST_HEADERS, body: JSON.stringify({ option }) });
     },
     putPost: (post) => {
         return request(`${BASE_URL}/posts/${post.id}`, { ...PUT_HEADERS, body: JSON.stringify(post) });
@@ -62,7 +62,7 @@ export default {
         return request(`${BASE_URL}/comments/${id}`, GET_HEADERS);
     },
     voteComment: (id, option) => {
-        return request(`${BASE_URL}/comments/${id}`, { ...POST_HEADERS, option: option });
+        return request(`${BASE_URL}/comments/${id}`, { ...POST_HEADERS, body: JSON.stringify({ option }) });
     },
     updateComment: (comment) => {
         return request(`${BASE_URL}/comments/${comment.id}`, { ...PUT_HEADERS, body: JSON.stringify(comment) });

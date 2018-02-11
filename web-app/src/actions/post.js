@@ -90,10 +90,10 @@ export function loadPostsByCategory(category) {
     };
 }
 
-export function loadPostsByCategorySuccess(post) {
+export function loadPostsByCategorySuccess(posts) {
     return {
         type: actions.LOAD_POSTS_BY_CATEGORY_SUCCESS,
-        post,
+        posts,
     };
 }
 

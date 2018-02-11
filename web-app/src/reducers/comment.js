@@ -7,6 +7,12 @@ const initialState = fromJS({
     comments: [],
 });
 
+const findCommentIndex = (comments, id) => {
+    return comments.findIndex(comment => {
+        return comment.get('id') === id;
+    });
+};
+
 function commentReducer(state = initialState, action) {
     switch (action.type) {
         case actions.LOAD_COMMENT:
@@ -45,7 +51,7 @@ function commentReducer(state = initialState, action) {
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', fromJS(action.comment));
+                .update('comments', comments => comments.push(fromJS(action.comment)));
         case actions.CREATE_POST_COMMENT_ERROR:
             return state
                 .set('lading', false)
@@ -59,7 +65,7 @@ function commentReducer(state = initialState, action) {
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', fromJS(action.comment));
+                .setIn(['comments', findCommentIndex(state.get('comments'), action.comment.id)], fromJS(action.comment));
         case actions.UPDATE_COMMENT_ERROR:
             return state
                 .set('lading', false)
@@ -73,7 +79,7 @@ function commentReducer(state = initialState, action) {
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', fromJS(action.comment));
+                .setIn(['comments', findCommentIndex(state.get('comments'), action.comment.id)], fromJS(action.comment));
         case actions.VOTE_COMMENT_ERROR:
             return state
                 .set('lading', false)

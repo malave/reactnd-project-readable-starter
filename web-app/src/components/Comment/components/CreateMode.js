@@ -6,11 +6,12 @@ import {
     Input,
 } from 'react-materialize';
 import {
-    COMMENT_PROPS,
     MODE_CREATE,
     MODE_EDIT,
     MODE_VIEW
-} from '../../../constants/propTypes';
+} from '../../../constants/strings';
+import {
+    COMMENT_PROPS} from '../../../constants/propTypes';
 
 class CreateMode extends React.Component {
     constructor() {

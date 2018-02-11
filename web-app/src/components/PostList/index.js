@@ -7,7 +7,7 @@ import {
     Row,
 } from 'react-materialize';
 import { NavLink, } from 'react-router-dom';
-import { MODE_CARD } from '../../constants/propTypes';
+import { MODE_CARD } from '../../constants/strings';
 import Post from '../Post';
 
 class PostList extends React.Component {
@@ -24,8 +24,8 @@ class PostList extends React.Component {
 
     renderAddCard() {
         return (
-            <Col s={4}>
-                <div key={'omg-this-button-is-so-unique'} className=" card-add">
+            <Col key={'omg-this-is-so-unique'} s={4}>
+                <div className=" card-add">
                     <CardPanel className="hoverable center-align">
                         <NavLink className={'btn-floating btn-large waves-effect waves-light red '} to={'/create'}><i className="material-icons">add</i></NavLink>
                     </CardPanel>

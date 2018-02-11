@@ -7,10 +7,12 @@ import {
     Card,
     Icon,
 } from 'react-materialize';
+import { COMMENT_PROPS } from '../../../constants/propTypes';
 import {
-    COMMENT_PROPS,
-    MODE_EDIT
-} from '../../../constants/propTypes';
+    MODE_EDIT,
+    VOTE_DOWN,
+    VOTE_UP
+} from '../../../constants/strings';
 
 class ViewMode extends React.Component {
     render() {
@@ -21,6 +23,8 @@ class ViewMode extends React.Component {
                     actions={[
                         <div key={_.random(0, 100)}>
                             <span><i>by <b>{comment.author}</b> {moment(comment.timestamp).fromNow()}</i></span>
+                            <Badge onClick={() => this.props.onVoteComment(comment.id, VOTE_DOWN)}><Icon>remove</Icon></Badge>
+                            <Badge onClick={() => this.props.onVoteComment(comment.id, VOTE_UP)}><Icon>add</Icon></Badge>
                             <Badge
                                 onClick={() => {
                                     this.props.setEditMode(MODE_EDIT);
@@ -40,7 +44,7 @@ class ViewMode extends React.Component {
 ViewMode.propTypes = {
     comment: PropTypes.shape(COMMENT_PROPS).isRequired,
     setEditMode: PropTypes.func.isRequired,
-
+    onVoteComment: PropTypes.func.isRequired,
 };
 
 export default ViewMode;

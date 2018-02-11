@@ -16,6 +16,11 @@ import {
     POST_PROPS
 } from '../../../constants/propTypes';
 
+import {
+    VOTE_DOWN,
+    VOTE_UP,
+} from '../../../constants/strings';
+
 class ViewMode extends React.Component {
     constructor() {
         super();
@@ -25,7 +30,13 @@ class ViewMode extends React.Component {
     }
 
     render() {
-        const { post, comments, onCreateComment, onUpdateComment } = this.props;
+        const {
+            post,
+            comments,
+            onCreateComment,
+            onUpdateComment,
+            onVoteComment
+        } = this.props;
         return (
             <div>
                 <Card
@@ -33,13 +44,20 @@ class ViewMode extends React.Component {
                     actions={[
                         <div key={_.random(0, 100)}>
                             <span><i>by <b>{post.author}</b> {moment(post.timestamp).fromNow()}</i></span>
+                            <Badge onClick={() => this.props.onVotePost(post.id, VOTE_DOWN)}><Icon>remove</Icon></Badge>
+                            <Badge onClick={() => this.props.onVotePost(post.id, VOTE_UP)}><Icon>add</Icon></Badge>
                             <NavLink to={`/${post.category}/${post.id}/edit`}> <Badge>&nbsp;<Icon>mode_edit</Icon></Badge></NavLink>
                             <Badge>{post.commentCount} <Icon>chat</Icon></Badge>
                             <Badge>{post.voteScore} <Icon>thumbs_up_down</Icon></Badge>
                         </div>
                     ]}
                 ><p>{post.body}</p></Card>
-                <CommentList comments={comments} onCreate={onCreateComment} onUpdate={onUpdateComment} />
+                <CommentList
+                    comments={comments}
+                    onCreate={onCreateComment}
+                    onUpdate={onUpdateComment}
+                    onVoteComment={onVoteComment}
+                />
             </div>
         );
     }
@@ -50,6 +68,8 @@ ViewMode.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.shape(COMMENT_PROPS)),
     onCreateComment: PropTypes.func.isRequired,
     onUpdateComment: PropTypes.func.isRequired,
+    onVotePost: PropTypes.func.isRequired,
+    onVoteComment: PropTypes.func.isRequired,
 };
 
 ViewMode.defaultProps = {

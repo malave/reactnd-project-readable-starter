@@ -2,7 +2,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Comment from '../../components/Comment';
-import { MODE_CREATE } from '../../constants/propTypes';
+import { MODE_CREATE } from '../../constants/strings';
 
 class CommentList extends React.Component {
     constructor() {
@@ -13,12 +13,22 @@ class CommentList extends React.Component {
 
     renderRow(comment) {
         const { onCreate, onUpdate } = this.props;
-        return <Comment key={comment.id} comment={comment} onUpdate={onUpdate} onCreate={onCreate} />;
+        return <Comment
+            key={comment.id}
+            comment={comment}
+            onUpdate={onUpdate}
+            onCreate={onCreate}
+            onVoteComment={this.props.onVoteComment}
+        />;
     }
 
     renderAddCard() {
         const { onCreate } = this.props;
-        return <Comment mode={MODE_CREATE} key={_.uniqueId('comment-list-row-')} onCreate={onCreate} />;
+        return <Comment
+            mode={MODE_CREATE}
+            key={_.uniqueId('comment-list-row-')}
+            onCreate={onCreate}
+        />;
     }
 
     render() {
@@ -35,6 +45,7 @@ CommentList.propTypes = {
     comments: PropTypes.array,
     onCreate: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
+    onVoteComment: PropTypes.func.isRequired,
 };
 
 CommentList.defaultProps = {

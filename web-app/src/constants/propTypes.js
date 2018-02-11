@@ -27,7 +27,6 @@ export const COMMENT_PROPS = {
     parentDeleted: PropTypes.bool.isRequired,
 };
 
-export const MODE_VIEW = 'mode/view';
-export const MODE_CARD = 'mode/card';
-export const MODE_EDIT = 'mode/edit';
-export const MODE_CREATE = 'mode/create';
+
+
+
