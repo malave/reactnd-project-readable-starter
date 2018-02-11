@@ -29,13 +29,12 @@ class Comment extends React.Component {
 
     renderMode() {
         const {
-            mode,
             comment,
             onCreate,
             onUpdate,
             onVoteComment
         } = this.props;
-        switch (mode) {
+        switch (this.state.mode) {
             case MODE_CREATE:
                 return <Create
                     mode={MODE_CREATE}

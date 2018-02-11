@@ -5,13 +5,12 @@ import {
     Card,
     Input,
 } from 'react-materialize';
+import { COMMENT_PROPS } from '../../../constants/propTypes';
 import {
     MODE_CREATE,
     MODE_EDIT,
     MODE_VIEW
 } from '../../../constants/strings';
-import {
-    COMMENT_PROPS} from '../../../constants/propTypes';
 
 class CreateMode extends React.Component {
     constructor() {
@@ -54,21 +53,26 @@ class CreateMode extends React.Component {
         if (this.props.mode === MODE_EDIT) {
             this.props.setViewMode(MODE_VIEW);
         }
+    }
 
+    renderCardAction(label, className, onClick) {
+        return <a
+            className={className}
+            key={_.uniqueId('comment-create-card-action-')}
+            onClick={onClick}
+        >{label}</a>;
     }
 
     render() {
-        const { comment } = this.props;
+        const { comment, mode } = this.props;
         const textAreaId = _.uniqueId('comment-create-text-area-');
+        const actions = [this.renderCardAction('Save', 'waves-effect waves-light btn', this.handleOnSubmit)];
+        if (mode === MODE_EDIT) {
+            actions.push(this.renderCardAction('Cancel', 'waves-effect waves-light btn right', () => this.props.setViewMode(MODE_VIEW)));
+        }
         return (
             <div>
-                <Card
-                    actions={[
-                        <a
-                            className={'waves-effect waves-light btn'} key={_.uniqueId('comment-create-')} onClick={this.handleOnSubmit}
-                        >Save</a>
-                    ]}
-                >
+                <Card actions={actions}>
                     <div className="col input-field">
                         <textarea
                             id={textAreaId}
@@ -77,7 +81,7 @@ class CreateMode extends React.Component {
                             className={`materialize-textarea ${_.isNil(comment) ? '' : 'active'}`}
                             onChange={this.handleInputChange}
                         />
-                        <label htmlFor={textAreaId}>Content</label>
+                        <label className="as active" htmlFor={textAreaId}>Content</label>
                     </div>
                     <Input label="Author" name="author" defaultValue={this.state.author} onChange={this.handleInputChange} />
 

@@ -23,12 +23,17 @@ class ViewMode extends React.Component {
                     actions={[
                         <div key={_.random(0, 100)}>
                             <span><i>by <b>{comment.author}</b> {moment(comment.timestamp).fromNow()}</i></span>
-                            <Badge onClick={() => this.props.onVoteComment(comment.id, VOTE_DOWN)}><Icon>remove</Icon></Badge>
-                            <Badge onClick={() => this.props.onVoteComment(comment.id, VOTE_UP)}><Icon>add</Icon></Badge>
                             <Badge
-                                onClick={() => {
-                                    this.props.setEditMode(MODE_EDIT);
-                                }}
+                                className={'cursor-pointer'}
+                                onClick={() => this.props.onVoteComment(comment.id, VOTE_DOWN)}
+                            ><Icon>remove</Icon></Badge>
+                            <Badge
+                                className={'cursor-pointer'}
+                                onClick={() => this.props.onVoteComment(comment.id, VOTE_UP)}
+                            ><Icon>add</Icon></Badge>
+                            <Badge
+                                className={'cursor-pointer'}
+                                onClick={() => this.props.setEditMode(MODE_EDIT)}
                             >&nbsp;<Icon>mode_edit</Icon></Badge>
                             <Badge>&nbsp;<Icon tiny>delete</Icon></Badge>
                             <Badge>{comment.voteScore}&nbsp;&nbsp;<Icon tiny>thumbs_up_down</Icon></Badge>

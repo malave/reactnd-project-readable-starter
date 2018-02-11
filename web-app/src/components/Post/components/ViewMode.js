@@ -46,7 +46,7 @@ class ViewMode extends React.Component {
                             <span><i>by <b>{post.author}</b> {moment(post.timestamp).fromNow()}</i></span>
                             <Badge onClick={() => this.props.onVotePost(post.id, VOTE_DOWN)}><Icon>remove</Icon></Badge>
                             <Badge onClick={() => this.props.onVotePost(post.id, VOTE_UP)}><Icon>add</Icon></Badge>
-                            <NavLink to={`/${post.category}/${post.id}/edit`}> <Badge>&nbsp;<Icon>mode_edit</Icon></Badge></NavLink>
+                            <NavLink to={`/${post.category}/${post.id}/edit`}><Badge>&nbsp;<Icon>mode_edit</Icon></Badge></NavLink>
                             <Badge>{post.commentCount} <Icon>chat</Icon></Badge>
                             <Badge>{post.voteScore} <Icon>thumbs_up_down</Icon></Badge>
                         </div>
