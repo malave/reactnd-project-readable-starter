@@ -7,6 +7,7 @@ import {
     Card,
     CardTitle,
     Icon,
+    Modal,
 } from 'react-materialize';
 import { NavLink, } from 'react-router-dom';
 
@@ -15,11 +16,14 @@ import {
     COMMENT_PROPS,
     POST_PROPS
 } from '../../../constants/propTypes';
-
 import {
     VOTE_DOWN,
     VOTE_UP,
 } from '../../../constants/strings';
+import {
+    ActionButton,
+    DeleteButton
+} from '../../Button';
 
 class ViewMode extends React.Component {
     constructor() {
@@ -55,10 +59,16 @@ class ViewMode extends React.Component {
                                 onClick={() => this.props.onVotePost(post.id, VOTE_UP)}
                             ><Icon>add</Icon></Badge>
                             <NavLink to={`/${post.category}/${post.id}/edit`}><Badge>&nbsp;<Icon>mode_edit</Icon></Badge></NavLink>
-                            <Badge
-                                className={'cursor-pointer'}
-                                onClick={() => onDeletePost(post.id)}
-                            ><Icon>delete</Icon></Badge>
+                            <Modal
+                                header='Delete'
+                                actions={[
+                                    <DeleteButton onClick={() => onDeletePost(post.id)} className={'left modal-action modal-close'}>Delete</DeleteButton>,
+                                    <ActionButton className={'modal-action modal-close'}>Cancel</ActionButton>,
+                                ]}
+                                trigger={<Badge className={'cursor-pointer'}>&nbsp;<Icon tiny>delete</Icon></Badge>}
+                            >
+                                <p>Are you sure you want to delete this post by <b>{post.author}</b>?</p>
+                            </Modal>
                             <Badge>{post.commentCount} <Icon>chat</Icon></Badge>
                             <Badge>{post.voteScore} <Icon>thumbs_up_down</Icon></Badge>
                         </div>

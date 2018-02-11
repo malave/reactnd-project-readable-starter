@@ -76,8 +76,9 @@ class PostPage extends React.Component {
 
     render() {
         const { mode, post, categories, comments } = this.props;
+        let postNode = <div />;
         if ((mode === MODE_VIEW) && !_.isEmpty(post)) {
-            return <Post
+            postNode = <Post
                 comments={comments}
                 post={post}
                 mode={mode}
@@ -90,7 +91,7 @@ class PostPage extends React.Component {
             />;
         }
         if ((mode === MODE_EDIT) && !_.isEmpty(post) && !_.isEmpty(categories)) {
-            return <Post
+            postNode = <Post
                 onUpdatePost={this.onUpdatePost}
                 categories={categories}
                 post={post}
@@ -98,13 +99,15 @@ class PostPage extends React.Component {
             />;
         }
         if ((mode === MODE_CREATE) && !_.isEmpty(categories)) {
-            return <Post
+            postNode = <Post
                 onCreatePost={this.onCreatePost}
                 categories={categories}
                 mode={mode}
             />;
         }
-        return <div />;
+        return <div>
+            {postNode}
+        </div>;
     }
 }
 

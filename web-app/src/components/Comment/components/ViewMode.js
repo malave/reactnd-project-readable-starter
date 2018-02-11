@@ -6,6 +6,7 @@ import {
     Badge,
     Card,
     Icon,
+    Modal,
 } from 'react-materialize';
 import { COMMENT_PROPS } from '../../../constants/propTypes';
 import {
@@ -13,6 +14,10 @@ import {
     VOTE_DOWN,
     VOTE_UP
 } from '../../../constants/strings';
+import {
+    ActionButton,
+    DeleteButton
+} from '../../Button';
 
 class ViewMode extends React.Component {
     render() {
@@ -35,10 +40,16 @@ class ViewMode extends React.Component {
                                 className={'cursor-pointer'}
                                 onClick={() => this.props.setEditMode(MODE_EDIT)}
                             >&nbsp;<Icon>mode_edit</Icon></Badge>
-                            <Badge
-                                className={'cursor-pointer'}
-                                onClick={() => this.props.onDeleteComment(comment.id)}
-                            >&nbsp;<Icon tiny>delete</Icon></Badge>
+                            <Modal
+                                header='Delete'
+                                actions={[
+                                    <DeleteButton onClick={() => this.props.onDeleteComment(comment.id)} className={'left modal-action modal-close'}>Delete</DeleteButton>,
+                                    <ActionButton className={'modal-action modal-close'}>Cancel</ActionButton>,
+                                ]}
+                                trigger={<Badge className={'cursor-pointer'}>&nbsp;<Icon tiny>delete</Icon></Badge>}
+                            >
+                                <p>Are you sure you want to delete this comment by <b>{comment.author}</b>?</p>
+                            </Modal>
                             <Badge>{comment.voteScore}&nbsp;&nbsp;<Icon tiny>thumbs_up_down</Icon></Badge>
                         </div>
                     ]}
