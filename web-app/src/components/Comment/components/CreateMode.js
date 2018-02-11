@@ -5,6 +5,7 @@ import {
     Card,
     Input,
 } from 'react-materialize';
+import ActionButton from '../../../components/Button/components/Action';
 import { COMMENT_PROPS } from '../../../constants/propTypes';
 import {
     MODE_CREATE,
@@ -56,11 +57,12 @@ class CreateMode extends React.Component {
     }
 
     renderCardAction(label, className, onClick) {
-        return <a
+
+        return <ActionButton
             className={className}
             key={_.uniqueId('comment-create-card-action-')}
             onClick={onClick}
-        >{label}</a>;
+        >{label}</ActionButton>;
     }
 
     render() {

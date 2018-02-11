@@ -9,7 +9,7 @@ class ActionButton extends React.Component {
             <Button
                 flat waves={'light'}
                 onClick={onClick}
-                className={`teal lighten-1 white-text text-darken-4 ${className}`}
+                className={`blue lighten-1 white-text text-darken-4 ${className}`}
             >{children}</Button>
         );
     }

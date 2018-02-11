@@ -28,7 +28,7 @@ class Main extends Component {
     render() {
         const { categories, category } = this.props;
         return (
-            <nav className={'indigo lighten-2'}>
+            <nav className={' blue darken-1'}>
                 <div className="nav-wrapper ">
                     <NavLink to='/' className="brand-logo">Readable</NavLink>
                     <ul className="right hide-on-med-and-down">

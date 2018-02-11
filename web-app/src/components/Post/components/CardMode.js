@@ -23,7 +23,7 @@ class CardMode extends React.Component {
                 header={<CardTitle image={`https://picsum.photos/341/180/?random&counter=${_.random(0, 100)}`}>{post.title}</CardTitle>}
                 actions={[
                     <div key={_.random(0, 100)}>
-                        <NavLink to={`/${post.category}/${post.id}`}>Read</NavLink>
+                        <NavLink className={' blue-text text-darken-4'} to={`/${post.category}/${post.id}`}>Read</NavLink>
                         <Badge>{post.commentCount} <Icon tiny>chat</Icon></Badge>
                         <Badge>{post.voteScore} <Icon tiny>thumb_up</Icon></Badge>
                     </div>

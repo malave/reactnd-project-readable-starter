@@ -5,6 +5,7 @@ import {
     Card,
     Input,
 } from 'react-materialize';
+import ActionButton from '../../../components/Button/components/Action';
 import {
     CATEGORY_PROPS,
     POST_PROPS
@@ -66,7 +67,7 @@ class CreateMode extends React.Component {
                 <Card
                     title='New Post'
                     actions={[
-                        <a className={'waves-effect waves-light btn'} key={_.uniqueId('post-create-')} onClick={this.handleOnSubmit}>Save</a>
+                        <ActionButton key={_.uniqueId('post-create-')} onClick={this.handleOnSubmit}>Save</ActionButton>
                     ]}
                 >
                     <Input label="Title" name="title" defaultValue={this.state.title} onChange={this.handleInputChange} />
