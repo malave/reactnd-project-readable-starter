@@ -4,11 +4,11 @@ import { Button, } from 'react-materialize';
 
 class DeleteButton extends React.Component {
     render() {
-        const { children, className } = this.props;
+        const { children, className, onClick } = this.props;
         return (
             <Button
                 flat waves={'light'}
-                onClick={this.props.onClick}
+                onClick={onClick}
                 className={`red lighten-1 white-text text-darken-4  ${className}`}
             >{children}</Button>
         );

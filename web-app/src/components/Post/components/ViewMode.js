@@ -42,6 +42,7 @@ class ViewMode extends React.Component {
             onVoteComment,
             onDeleteComment,
             onDeletePost,
+            onVotePost,
         } = this.props;
         return (
             <div>
@@ -52,11 +53,11 @@ class ViewMode extends React.Component {
                             <span><i>by <b>{post.author}</b> {moment(post.timestamp).fromNow()}</i></span>
                             <Badge
                                 className={'cursor-pointer'}
-                                onClick={() => this.props.onVotePost(post.id, VOTE_DOWN)}
+                                onClick={() => onVotePost(post.id, VOTE_DOWN)}
                             ><Icon>remove</Icon></Badge>
                             <Badge
                                 className={'cursor-pointer'}
-                                onClick={() => this.props.onVotePost(post.id, VOTE_UP)}
+                                onClick={() => onVotePost(post.id, VOTE_UP)}
                             ><Icon>add</Icon></Badge>
                             <NavLink to={`/${post.category}/${post.id}/edit`}><Badge>&nbsp;<Icon>mode_edit</Icon></Badge></NavLink>
                             <Modal

@@ -12,14 +12,14 @@ class CommentList extends React.Component {
     }
 
     renderRow(comment) {
-        const { onCreate, onUpdate } = this.props;
+        const { onCreate, onUpdate, onVoteComment, onDeleteComment } = this.props;
         return <Comment
             key={comment.id}
             comment={comment}
             onUpdate={onUpdate}
             onCreate={onCreate}
-            onVoteComment={this.props.onVoteComment}
-            onDeleteComment={this.props.onDeleteComment}
+            onVoteComment={onVoteComment}
+            onDeleteComment={onDeleteComment}
         />;
     }
 

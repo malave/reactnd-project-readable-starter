@@ -64,11 +64,11 @@ class CreateMode extends React.Component {
     }
 
     render() {
-        const { comment, mode } = this.props;
+        const { comment, mode, setViewMode } = this.props;
         const textAreaId = _.uniqueId('comment-create-text-area-');
         const actions = [this.renderCardAction('Save', 'waves-effect waves-light btn', this.handleOnSubmit)];
         if (mode === MODE_EDIT) {
-            actions.push(this.renderCardAction('Cancel', 'waves-effect waves-light btn right', () => this.props.setViewMode(MODE_VIEW)));
+            actions.push(this.renderCardAction('Cancel', 'waves-effect waves-light btn right', () => setViewMode(MODE_VIEW)));
         }
         return (
             <div>

@@ -21,7 +21,7 @@ import {
 
 class ViewMode extends React.Component {
     render() {
-        const { comment } = this.props;
+        const { comment, onVoteComment, setEditMode, onDeleteComment } = this.props;
         return (
             <div>
                 <Card
@@ -30,20 +30,20 @@ class ViewMode extends React.Component {
                             <span><i>by <b>{comment.author}</b> {moment(comment.timestamp).fromNow()}</i></span>
                             <Badge
                                 className={'cursor-pointer'}
-                                onClick={() => this.props.onVoteComment(comment.id, VOTE_DOWN)}
+                                onClick={() => onVoteComment(comment.id, VOTE_DOWN)}
                             ><Icon>remove</Icon></Badge>
                             <Badge
                                 className={'cursor-pointer'}
-                                onClick={() => this.props.onVoteComment(comment.id, VOTE_UP)}
+                                onClick={() => onVoteComment(comment.id, VOTE_UP)}
                             ><Icon>add</Icon></Badge>
                             <Badge
                                 className={'cursor-pointer'}
-                                onClick={() => this.props.setEditMode(MODE_EDIT)}
+                                onClick={() => setEditMode(MODE_EDIT)}
                             >&nbsp;<Icon>mode_edit</Icon></Badge>
                             <Modal
                                 header='Delete'
                                 actions={[
-                                    <DeleteButton onClick={() => this.props.onDeleteComment(comment.id)} className={'left modal-action modal-close'}>Delete</DeleteButton>,
+                                    <DeleteButton onClick={() => onDeleteComment(comment.id)} className={'left modal-action modal-close'}>Delete</DeleteButton>,
                                     <ActionButton className={'modal-action modal-close'}>Cancel</ActionButton>,
                                 ]}
                                 trigger={<Badge className={'cursor-pointer'}>&nbsp;<Icon tiny>delete</Icon></Badge>}

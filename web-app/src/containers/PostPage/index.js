@@ -105,9 +105,7 @@ class PostPage extends React.Component {
                 mode={mode}
             />;
         }
-        return <div>
-            {postNode}
-        </div>;
+        return <div>{postNode}</div>;
     }
 }
 
