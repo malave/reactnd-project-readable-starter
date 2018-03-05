@@ -1,2 +1,4 @@
 node_modules/
 .DS_Store
+api-server/.idea/
+api-server.iml
