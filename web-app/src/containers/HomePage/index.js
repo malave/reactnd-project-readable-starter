@@ -1,11 +1,9 @@
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import {
-    loadPosts,
-    loadPostsByCategory
-} from '../../actions/post';
+import { loadPosts } from '../../actions/post';
 import PostList from '../../components/PostList';
 
 class HomePage extends React.Component {
@@ -23,9 +21,11 @@ class HomePage extends React.Component {
     }
 
     render() {
-        const { posts, location } = this.props;
+        const { posts, location, sort } = this.props;
+        const sorted = _.orderBy(posts, [sort.field], [sort.order]);
+
         return (
-            <PostList posts={posts} location={location} />
+            <PostList posts={sorted} location={location} />
         );
     }
 }
@@ -45,16 +45,13 @@ const mapStateToProps = (state, ownProps) => ({
     categories: state.get('category').get('categories').toJS(),
     category: ownProps.match.params.category,
     posts: state.get('post').get('posts').toJS(),
+    sort: state.get('post').get('sort').toJS(),
 });
 
 export function mapDispatchToProps(dispatch) {
     return {
         loadPosts: (category) => {
-            if (category) {
-                dispatch(loadPostsByCategory(category));
-            } else {
-                dispatch(loadPosts());
-            }
+            dispatch(loadPosts({ category }));
         },
     };
 }

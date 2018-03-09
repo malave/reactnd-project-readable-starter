@@ -4,7 +4,7 @@ export const LOAD_CATEGORIES = 'readable/Category/LOAD_CATEGORIES';
 export const LOAD_CATEGORIES_SUCCESS = 'readable/Category/LOAD_CATEGORIES_SUCCESS';
 export const LOAD_CATEGORIES_ERROR = 'readable/Category/LOAD_CATEGORIES_ERROR';
 
-//POST
+// Posts
 export const LOAD_POSTS = 'readable/Post/LOAD_POSTS';
 export const LOAD_POSTS_SUCCESS = 'readable/Post/LOAD_POSTS_SUCCESS';
 export const LOAD_POSTS_ERROR = 'readable/Post/LOAD_POSTS_ERROR';
@@ -12,10 +12,6 @@ export const LOAD_POSTS_ERROR = 'readable/Post/LOAD_POSTS_ERROR';
 export const LOAD_POST = 'readable/Post/LOAD_POST';
 export const LOAD_POST_SUCCESS = 'readable/Post/LOAD_POST_SUCCESS';
 export const LOAD_POST_ERROR = 'readable/Post/LOAD_POST_ERROR';
-
-export const LOAD_POSTS_BY_CATEGORY = 'readable/Post/LOAD_POSTS_BY_CATEGORY';
-export const LOAD_POSTS_BY_CATEGORY_SUCCESS = 'readable/Post/LOAD_POSTS_BY_CATEGORY_SUCCESS';
-export const LOAD_POSTS_BY_CATEGORY_ERROR = 'readable/Post/LOAD_POSTS_BY_CATEGORY_ERROR';
 
 export const CREATE_POST = 'readable/Post/CREATE_POST';
 export const CREATE_POST_SUCCESS = 'readable/Post/CREATE_POST_SUCCESS';
@@ -33,7 +29,9 @@ export const DELETE_POST = 'readable/Post/DELETE_POST';
 export const DELETE_POST_SUCCESS = 'readable/Post/DELETE_POST_SUCCESS';
 export const DELETE_POST_ERROR = 'readable/Post/DELETE_POST_ERROR';
 
-//Comments
+export const SORT_POSTS = 'readable/Post/SORT_POSTS';
+
+// Comments
 export const LOAD_COMMENT = 'readable/Comment/LOAD_COMMENT';
 export const LOAD_COMMENT_SUCCESS = 'readable/Comment/LOAD_COMMENT_SUCCESS';
 export const LOAD_COMMENT_ERROR = 'readable/Comment/LOAD_COMMENT_ERROR';

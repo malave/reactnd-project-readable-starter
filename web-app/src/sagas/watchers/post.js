@@ -18,10 +18,6 @@ export function* updatePost() {
     yield takeLatest(actionConstants.UPDATE_POST, postWorkers.putPost);
 }
 
-export function* loadPostsByCategory() {
-    yield takeLatest(actionConstants.LOAD_POSTS_BY_CATEGORY, postWorkers.getPostsByCategory);
-}
-
 export function* votePost() {
     yield takeLatest(actionConstants.VOTE_POST, postWorkers.votePost);
 }
@@ -36,7 +32,6 @@ export default [
     loadPostById,
     createPost,
     updatePost,
-    loadPostsByCategory,
     votePost,
     deletePost,
 ];

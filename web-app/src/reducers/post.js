@@ -4,6 +4,7 @@ import * as actions from '../constants/actions';
 // The initial state of the App
 const initialState = fromJS({
     current: null,
+    sort: { field: 'timestamp', order: 'desc' },
     posts: [],
 });
 
@@ -37,20 +38,6 @@ function postReducer(state = initialState, action) {
                 .set('lading', false)
                 .set('error', action.error)
                 .set('current', initialState.get('current'));
-        case actions.LOAD_POSTS_BY_CATEGORY:
-            return state
-                .set('lading', true)
-                .set('error', null);
-        case actions.LOAD_POSTS_BY_CATEGORY_SUCCESS:
-            return state
-                .set('lading', false)
-                .set('error', null)
-                .set('posts', fromJS(action.posts));
-        case actions.LOAD_POSTS_BY_CATEGORY_ERROR:
-            return state
-                .set('lading', false)
-                .set('error', action.error)
-                .set('posts', initialState.get('posts'));
         case actions.CREATE_POST:
             return state
                 .set('lading', true)
@@ -107,6 +94,8 @@ function postReducer(state = initialState, action) {
                 .set('lading', false)
                 .set('error', action.error)
                 .set('current', initialState.get('current'));
+        case actions.SORT_POSTS:
+            return state.set('sort', fromJS(action.sort));
         default:
             return state;
     }

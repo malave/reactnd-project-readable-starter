@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment/moment';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -20,7 +21,7 @@ class CardMode extends React.Component {
         return (
             <Card
                 className='small hoverable'
-                header={<CardTitle image={`https://picsum.photos/341/180/?random&counter=${_.random(0, 100)}`}>{post.title}</CardTitle>}
+                header={<CardTitle image={post.imageCard}>{post.title}</CardTitle>}
                 actions={[
                     <div key={_.random(0, 100)}>
                         <NavLink className={' blue-text text-darken-4'} to={`/${post.category}/${post.id}`}>Read</NavLink>
@@ -28,7 +29,9 @@ class CardMode extends React.Component {
                         <Badge>{post.voteScore} <Icon tiny>thumb_up</Icon></Badge>
                     </div>
                 ]}
-            ><h6 className={'center-align grey-text text-lighten-1'}>&mdash; {post.category} &mdash;</h6></Card>
+            >
+                <h6 className={'center-align grey-text text-lighten-1'}>&mdash; <time title={moment(post.timestamp).format('dddd, MMMM Do YYYY, h:mm:ss a')}>{moment(post.timestamp).fromNow()}</time> in {post.category} &mdash;</h6>
+            </Card>
         );
     }
 }

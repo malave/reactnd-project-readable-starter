@@ -47,7 +47,7 @@ class ViewMode extends React.Component {
         return (
             <div>
                 <Card
-                    header={<CardTitle image={this.state.image}>{post.title}</CardTitle>}
+                    header={<CardTitle image={post.imageBanner}>{post.title}</CardTitle>}
                     actions={[
                         <div key={_.random(0, 100)}>
                             <span><i>by <b>{post.author}</b> {moment(post.timestamp).fromNow()}</i></span>

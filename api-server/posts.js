@@ -12,7 +12,9 @@ const defaultData = {
         category: 'react',
         voteScore: 6,
         deleted: false,
-        commentCount: 2
+        commentCount: 2,
+        imageCard: 'https://picsum.photos/341/180/?image=96',
+        imageBanner: 'https://picsum.photos/1024/180/?image=96',
     },
     '6ni6ok3ym7mf1p33lnez': {
         id: '6ni6ok3ym7mf1p33lnez',
@@ -23,7 +25,10 @@ const defaultData = {
         category: 'redux',
         voteScore: -5,
         deleted: false,
-        commentCount: 0
+        commentCount: 0,
+        imageCard: 'https://picsum.photos/341/180/?image=70',
+        imageBanner: 'https://picsum.photos/1024/180/?image=70',
+
     },
     '6ni6o735gdkdp33lnez': {
         id: '6ni6o735gdkdp33lnez',
@@ -34,7 +39,10 @@ const defaultData = {
         category: 'react',
         voteScore: 20,
         deleted: false,
-        commentCount: 0
+        commentCount: 0,
+        imageCard: 'https://picsum.photos/341/180/?image=66',
+        imageBanner: 'https://picsum.photos/1024/180/?image=66',
+
     },
     '674jdgslm7mf1p33lnez': {
         id: '674jdgslm7mf1p33lnez',
@@ -45,7 +53,10 @@ const defaultData = {
         category: 'redux',
         voteScore: -20,
         deleted: false,
-        commentCount: 0
+        commentCount: 0,
+        imageCard: 'https://picsum.photos/341/180/?image=33',
+        imageBanner: 'https://picsum.photos/1024/180/?image=33',
+
     },
     '674jdgslm7mf1p33lnes': {
         id: '674jdgslm7mf1p33lnes',
@@ -56,7 +67,10 @@ const defaultData = {
         category: 'redux',
         voteScore: -20,
         deleted: false,
-        commentCount: 0
+        commentCount: 0,
+        imageCard: 'https://picsum.photos/341/180/?image=22',
+        imageBanner: 'https://picsum.photos/1024/180/?image=22',
+
     }
 };
 
@@ -100,7 +114,7 @@ function getAll(token) {
 function add(token, post) {
     return new Promise((res) => {
         let posts = getData(token);
-
+        const imageId = Math.floor(Math.random() * 86); // use a small set of https://picsum.photos where we will always get a valida id
         posts[post.id] = {
             id: post.id,
             timestamp: post.timestamp,
@@ -110,7 +124,9 @@ function add(token, post) {
             category: post.category,
             voteScore: 1,
             deleted: false,
-            commentCount: 0
+            commentCount: 0,
+            imageCard: `https://picsum.photos/341/180/?image=${imageId}`,
+            imageBanner: `https://picsum.photos/1024/180/?image=${imageId}`,
         };
 
         res(posts[post.id]);

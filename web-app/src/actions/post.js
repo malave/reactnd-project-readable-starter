@@ -1,8 +1,9 @@
 import * as actions from '../constants/actions';
 
-export function loadPosts() {
+export function loadPosts(filter = { category: null }) {
     return {
         type: actions.LOAD_POSTS,
+        filter,
     };
 }
 
@@ -83,27 +84,6 @@ export function updatePostError(error) {
     };
 }
 
-export function loadPostsByCategory(category) {
-    return {
-        type: actions.LOAD_POSTS_BY_CATEGORY,
-        category,
-    };
-}
-
-export function loadPostsByCategorySuccess(posts) {
-    return {
-        type: actions.LOAD_POSTS_BY_CATEGORY_SUCCESS,
-        posts,
-    };
-}
-
-export function loadPostsByCategoryError(error) {
-    return {
-        type: actions.LOAD_POSTS_BY_CATEGORY_ERROR,
-        error,
-    };
-}
-
 export function votePost(id, option) {
     return {
         type: actions.VOTE_POST,
@@ -144,5 +124,12 @@ export function deletePostError(error) {
     return {
         type: actions.DELETE_POST_ERROR,
         error,
+    };
+}
+
+export function sortPosts(sort) {
+    return {
+        type: actions.SORT_POSTS,
+        sort,
     };
 }

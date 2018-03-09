@@ -20,11 +20,27 @@
     padding-top: 37%;
 }
 
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer;
 }
 
 nav .nav-wrapper {
     margin-left: 10px;
     margin-right: 15px;
+}
+
+.rotate180 { /*upside down*/
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.sort-component {
+    margin-left: 25px;
+}
+
+.sort-component li:first-child {
+    margin-right: 10px;
 }
