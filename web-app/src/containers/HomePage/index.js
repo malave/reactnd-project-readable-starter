@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { changeCategory } from '../../actions/category';
 import { loadPosts } from '../../actions/post';
+
 import PostList from '../../components/PostList';
 
 class HomePage extends React.Component {
@@ -51,6 +53,7 @@ const mapStateToProps = (state, ownProps) => ({
 export function mapDispatchToProps(dispatch) {
     return {
         loadPosts: (category) => {
+            dispatch(changeCategory(category));
             dispatch(loadPosts({ category }));
         },
     };
