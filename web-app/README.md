@@ -2224,6 +2224,14 @@ To resolve this:
 
 In the future, we might start automatically compiling incompatible third-party modules, but it is not currently supported. This approach would also slow down the production builds.
 
+## Authors
+
+* **Luis Malavé** - *Initial work* - [malave](https://github.com/malave)
+
+## License
+
+This project is licensed under the MIT License
+
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
