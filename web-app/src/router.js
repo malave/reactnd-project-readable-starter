@@ -17,6 +17,7 @@ import {
 // build the router
 const router = (
     <Switch>
+        <Route exact path='/404' component={NotFound} />
         <Route exact path='/' component={HomePage} />
         <Route
             exact path='/create' render={(props) => (
@@ -34,7 +35,6 @@ const router = (
             <PostPage {...props} mode={MODE_EDIT} />
         )}
         />
-        <Route exact path='*' component={NotFound} />
     </Switch>
 );
 

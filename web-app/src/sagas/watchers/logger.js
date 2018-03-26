@@ -6,7 +6,7 @@ import {
 export function* errorLogger() {
     yield takeEvery('*', function* errorLogger(action) {
         if (action.error) {
-            yield call(console.error, action);
+            yield call(console.trace, action);
         }
     });
 }

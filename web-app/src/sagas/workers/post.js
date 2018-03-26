@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { push } from 'react-router-redux';
 import {
     call,
@@ -26,7 +27,13 @@ export function* getPost(payload) {
     const { id } = payload;
     try {
         const response = yield call(api.getPostById, id);
-        yield put(postActions.loadPostByIdSuccess(response));
+        if (_.isEmpty(response)) {
+            yield put(postActions.loadPostByIdError({ message: 'Not Found' }));
+            yield put(push('/404'));
+        } else {
+            yield put(postActions.loadPostByIdSuccess(response));
+        }
+
     } catch (error) {
         yield put(postActions.loadPostByIdError(error));
     }
