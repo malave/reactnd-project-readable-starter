@@ -11,9 +11,24 @@ import { MODE_CARD } from '../../constants/strings';
 import Post from '../Post';
 
 class PostList extends React.Component {
+    constructor() {
+        super();
+        this.renderCol = this.renderCol.bind(this);
+        this.renderRow = this.renderRow.bind(this);
+
+    }
 
     renderCol(posts) {
-        return posts.map((post) => <Col s={4} key={post.id}><Post post={post} mode={MODE_CARD} /></Col>);
+        const { onVotePost, onDeletePost, onEdit } = this.props;
+        return posts.map((post) => <Col s={4} key={post.id}>
+            <Post
+                post={post}
+                mode={MODE_CARD}
+                onVotePost={onVotePost}
+                onDeletePost={onDeletePost}
+                onEdit={onEdit}
+            />
+        </Col>);
     }
 
     renderRow(groups) {
@@ -48,6 +63,9 @@ class PostList extends React.Component {
 
 PostList.propTypes = {
     posts: PropTypes.array,
+    onVotePost: PropTypes.func,
+    onDeletePost: PropTypes.func,
+    onEdit: PropTypes.func,
 };
 
 PostList.defaultProps = {

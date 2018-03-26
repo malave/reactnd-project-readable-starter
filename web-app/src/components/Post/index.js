@@ -30,6 +30,7 @@ class Post extends React.Component {
             onVoteComment,
             onDeleteComment,
             onDeletePost,
+            onEdit,
         } = this.props;
 
         switch (mode) {
@@ -43,9 +44,17 @@ class Post extends React.Component {
                     categories={categories}
                     post={post}
                     onSubmit={onUpdatePost}
+                    onVotePost={onVotePost}
+                    onDeletePost={onDeletePost}
+
                 />;
             case MODE_CARD:
-                return <Card post={post} />;
+                return <Card
+                    post={post}
+                    onVotePost={onVotePost}
+                    onDeletePost={onDeletePost}
+                    onEdit={onEdit}
+                />;
             default:
                 return <View
                     comments={comments}
@@ -56,6 +65,7 @@ class Post extends React.Component {
                     onVoteComment={onVoteComment}
                     onDeleteComment={onDeleteComment}
                     onDeletePost={onDeletePost}
+                    onEdit={onEdit}
                 />;
         }
     }
@@ -78,6 +88,7 @@ Post.propTypes = {
     onVoteComment: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onDeletePost: PropTypes.func,
+    onEdit: PropTypes.func,
 };
 
 Post.defaultProps = {

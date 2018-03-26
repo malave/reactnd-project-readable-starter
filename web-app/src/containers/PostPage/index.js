@@ -2,6 +2,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import * as  categoryActions from '../../actions/category';
 import * as  commentActions from '../../actions/comment';
 import * as  postActions from '../../actions/post';
@@ -18,18 +19,6 @@ import {
 } from '../../constants/strings';
 
 class PostPage extends React.Component {
-    constructor() {
-        super();
-        this.onCreatePost = this.onCreatePost.bind(this);
-        this.onUpdatePost = this.onUpdatePost.bind(this);
-        this.onCreateComment = this.onCreateComment.bind(this);
-        this.onUpdateComment = this.onUpdateComment.bind(this);
-        this.onVotePost = this.onVotePost.bind(this);
-        this.onVoteComment = this.onVoteComment.bind(this);
-        this.onDeletePost = this.onDeletePost.bind(this);
-        this.onDeleteComment = this.onDeleteComment.bind(this);
-    }
-
     componentWillMount() {
         const { mode } = this.props;
         this.props.loadCategories();
@@ -41,66 +30,52 @@ class PostPage extends React.Component {
         }
     }
 
-    onCreatePost(post) {
-        this.props.createPost(post);
-    }
-
-    onUpdatePost(post) {
-        this.props.updatePost(post);
-    }
-
-    onCreateComment(comment) {
-        comment.parentId = this.props.post.id;
-        this.props.createComment(comment);
-    }
-
-    onUpdateComment(comment) {
-        this.props.updateComment(comment);
-    }
-
-    onVotePost(id, option) {
-        this.props.votePost(id, option);
-    }
-
-    onVoteComment(id, option) {
-        this.props.voteComment(id, option);
-    }
-
-    onDeletePost(id) {
-        this.props.deletePost(id);
-    }
-
-    onDeleteComment(id) {
-        this.props.deleteComment(id);
-    }
-
     render() {
-        const { mode, post, categories, comments } = this.props;
+        const {
+            mode,
+            post,
+            categories,
+            comments,
+            editPost,
+            createPost,
+            updatePost,
+            updateComment,
+            votePost,
+            voteComment,
+            deletePost,
+            deleteComment,
+            createComment,
+        } = this.props;
         let postNode = <div />;
         if ((mode === MODE_VIEW) && !_.isEmpty(post)) {
             postNode = <Post
                 comments={comments}
                 post={post}
                 mode={mode}
-                onCreateComment={this.onCreateComment}
-                onUpdateComment={this.onUpdateComment}
-                onVotePost={this.onVotePost}
-                onVoteComment={this.onVoteComment}
-                onDeleteComment={this.onDeleteComment}
-                onDeletePost={this.onDeletePost}
+                onCreateComment={(comment) => {
+                    comment.parentId = post.id;
+                    return createComment(comment);
+                }}
+                onUpdateComment={updateComment}
+                onVotePost={votePost}
+                onVoteComment={voteComment}
+                onDeleteComment={deleteComment}
+                onDeletePost={deletePost}
+                onEdit={editPost}
             />;
         }
         if ((mode === MODE_EDIT) && !_.isEmpty(post) && !_.isEmpty(categories)) {
             postNode = <Post
-                onUpdatePost={this.onUpdatePost}
+                onUpdatePost={updatePost}
                 categories={categories}
                 post={post}
                 mode={mode}
+                onEdit={editPost}
             />;
         }
         if ((mode === MODE_CREATE) && !_.isEmpty(categories)) {
             postNode = <Post
-                onCreatePost={this.onCreatePost}
+                onCreatePost={createPost}
                 categories={categories}
                 mode={mode}
             />;
@@ -165,6 +140,9 @@ export function mapDispatchToProps(dispatch) {
         },
         deleteComment: (id) => {
             dispatch(commentActions.deleteComment(id));
+        },
+        editPost: (category, id) => {
+            dispatch(push(`/${category}/${id}/edit`));
         },
     };
 }

@@ -4,15 +4,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { changeCategory } from '../../actions/category';
-import { loadPosts } from '../../actions/post';
+import {
+    deletePost,
+    loadPosts,
+    votePost
+} from '../../actions/post';
+import {push} from 'react-router-redux';
 
 import PostList from '../../components/PostList';
 
 class HomePage extends React.Component {
-
     componentDidMount() {
         const { category } = this.props;
         this.props.loadPosts(category);
+        this.onVotePost = this.onVotePost.bind(this);
+        this.onDeletePost = this.onDeletePost.bind(this);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -22,12 +28,26 @@ class HomePage extends React.Component {
         }
     }
 
+    onVotePost(id, option) {
+        this.props.votePost(id, option);
+    }
+
+    onDeletePost(id) {
+        this.props.deletePost(id);
+    }
+
     render() {
-        const { posts, location, sort } = this.props;
+        const { posts, location, sort, votePost, deletePost,editPost } = this.props;
         const sorted = _.orderBy(posts, [sort.field], [sort.order]);
 
         return (
-            <PostList posts={sorted} location={location} />
+            <PostList
+                posts={sorted}
+                location={location}
+                onVotePost={votePost}
+                onDeletePost={deletePost}
+                onEdit={editPost}
+            />
         );
     }
 }
@@ -39,6 +59,8 @@ HomePage.propTypes = {
     posts: PropTypes.array,
     loadCategories: PropTypes.func,
     loadPosts: PropTypes.func,
+    votePost: PropTypes.func,
+    deletePost: PropTypes.func,
 
 };
 const mapStateToProps = (state, ownProps) => ({
@@ -55,6 +77,15 @@ export function mapDispatchToProps(dispatch) {
         loadPosts: (category) => {
             dispatch(changeCategory(category));
             dispatch(loadPosts({ category }));
+        },
+        votePost: (id, option) => {
+            dispatch(votePost(id, option));
+        },
+        deletePost: (id) => {
+            dispatch(deletePost(id));
+        },
+        editPost: (category,id) => {
+            dispatch(push(`/${category}/${id}/edit`));
         },
     };
 }

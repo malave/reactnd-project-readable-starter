@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import moment from 'moment/moment';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
@@ -7,23 +7,13 @@ import {
     Card,
     CardTitle,
     Icon,
-    Modal,
 } from 'react-materialize';
-import { NavLink, } from 'react-router-dom';
-
-import CommentList from '../../../components/CommentList';
 import {
     COMMENT_PROPS,
     POST_PROPS
 } from '../../../constants/propTypes';
-import {
-    VOTE_DOWN,
-    VOTE_UP,
-} from '../../../constants/strings';
-import {
-    ActionButton,
-    DeleteButton
-} from '../../Button';
+import { PostActionBar } from '../../ActionBar';
+import CommentList from '../../CommentList';
 
 class ViewMode extends React.Component {
     constructor() {
@@ -43,36 +33,30 @@ class ViewMode extends React.Component {
             onDeleteComment,
             onDeletePost,
             onVotePost,
+            onEdit,
         } = this.props;
         return (
             <div>
                 <Card
-                    header={<CardTitle image={post.imageBanner}>{post.title}</CardTitle>}
-                    actions={[
-                        <div key={_.random(0, 100)}>
-                            <span><i>by <b>{post.author}</b> {moment(post.timestamp).fromNow()}</i></span>
-                            <Badge
-                                className={'cursor-pointer'}
-                                onClick={() => onVotePost(post.id, VOTE_DOWN)}
-                            ><Icon>remove</Icon></Badge>
-                            <Badge
-                                className={'cursor-pointer'}
-                                onClick={() => onVotePost(post.id, VOTE_UP)}
-                            ><Icon>add</Icon></Badge>
-                            <NavLink to={`/${post.category}/${post.id}/edit`}><Badge>&nbsp;<Icon>mode_edit</Icon></Badge></NavLink>
-                            <Modal
-                                header='Delete'
-                                actions={[
-                                    <DeleteButton onClick={() => onDeletePost(post.id)} className={'left modal-action modal-close'}>Delete</DeleteButton>,
-                                    <ActionButton className={'modal-action modal-close'}>Cancel</ActionButton>,
-                                ]}
-                                trigger={<Badge className={'cursor-pointer'}>&nbsp;<Icon tiny>delete</Icon></Badge>}
-                            >
-                                <p>Are you sure you want to delete this post by <b>{post.author}</b>?</p>
-                            </Modal>
-                            <Badge>{post.commentCount} <Icon>chat</Icon></Badge>
-                            <Badge>{post.voteScore} <Icon>thumbs_up_down</Icon></Badge>
+                    className={'view-mode'}
+                    header={
+                        <div>
+                            <div className={'card-badges'}>
+                                <Badge>{post.commentCount} <Icon tiny right>chat</Icon></Badge>
+                                <Badge>{post.voteScore} <Icon tiny right>thumbs_up_down</Icon></Badge>
+                            </div>
+                            <CardTitle image={post.imageBanner}>{post.title}</CardTitle>
                         </div>
+                    }
+                    actions={[
+                        <span key={`author-${post.id}`}><i>by <b>{post.author}</b> {moment(post.timestamp).fromNow()}</i></span>,
+                        <PostActionBar
+                            key={`post-action-bar-${post.id}`}
+                            post={post}
+                            onVotePost={onVotePost}
+                            onDeletePost={onDeletePost}
+                            onEdit={onEdit}
+                        />
                     ]}
                 ><p>{post.body}</p></Card>
                 <CommentList
@@ -96,6 +80,7 @@ ViewMode.propTypes = {
     onVoteComment: PropTypes.func.isRequired,
     onDeleteComment: PropTypes.func.isRequired,
     onDeletePost: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
 };
 
 ViewMode.defaultProps = {

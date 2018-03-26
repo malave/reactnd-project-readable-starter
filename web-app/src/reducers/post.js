@@ -71,10 +71,13 @@ function postReducer(state = initialState, action) {
                 .set('lading', true)
                 .set('error', null);
         case actions.VOTE_POST_SUCCESS:
+            const votePostIndex = state.get('posts').toJS().findIndex(post => post.id === action.post.id);
+            const votePostPosts = votePostIndex > 0 ? state.get('posts').set(votePostIndex, action.post) : state.get('posts');
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', fromJS(action.post));
+                .set('current', fromJS(action.post))
+                .set('posts', votePostPosts);
         case actions.VOTE_POST_ERROR:
             return state
                 .set('lading', false)
@@ -85,10 +88,13 @@ function postReducer(state = initialState, action) {
                 .set('lading', true)
                 .set('error', null);
         case actions.DELETE_POST_SUCCESS:
+            const deletePostIndex = state.get('posts').toJS().findIndex(post => post.id === action.post.id);
+            const deletePostPosts = deletePostIndex > 0 ? state.get('posts').delete(deletePostIndex) : state.get('posts');
             return state
                 .set('lading', false)
                 .set('error', null)
-                .set('current', null);
+                .set('current', null)
+                .set('posts', deletePostPosts);
         case actions.DELETE_POST_ERROR:
             return state
                 .set('lading', false)
